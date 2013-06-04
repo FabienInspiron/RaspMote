@@ -1,0 +1,39 @@
+package client;
+
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
+
+import webservices.HelloWorld;
+import webservices.HelloWorldImplService;
+
+public class Client {
+	public static final String PORT = "9090";
+	
+	public static void main(String[] args) {
+		
+		try {
+			System.out.println(InetAddress.getLocalHost().getHostAddress;);
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 
+		HelloWorldImplService helloService = new HelloWorldImplService();
+		HelloWorld hello = helloService.getHelloWorldImplPort();
+ 
+		Thread d = new Thread(new NotificationListner(9090));
+		
+		d.start();
+		
+		hello.subscribe("http://157.169.100.132:9090/");
+		
+		System.out.println(hello.getHelloWorldAsString("mkyong"));
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+}

@@ -1,0 +1,23 @@
+package client;
+
+import webservices.HelloWorld;
+import webservices.HelloWorldImplService;
+
+public class Client {
+	public static void main(String[] args) {
+		System.out.println(args);
+		 
+		HelloWorldImplService helloService = new HelloWorldImplService();
+		HelloWorld hello = helloService.getHelloWorldImplPort();
+ 
+		Thread d = new Thread(new NotificationListner(9090));
+		
+		d.start();
+		
+		hello.subscribe("http://157.169.100.132:9090/");
+		
+		System.out.println(hello.getHelloWorldAsString("mkyong"));
+		
+		Thread.sleep(1000);
+    }
+}

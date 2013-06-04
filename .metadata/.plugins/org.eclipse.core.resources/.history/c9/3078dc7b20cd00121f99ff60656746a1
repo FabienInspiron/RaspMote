@@ -1,0 +1,111 @@
+package com.mkyong.ws;
+ 
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jws.WebService;
+ 
+@WebService(endpointInterface = "com.mkyong.ws.IThirdPartyServer")
+public class ThirdPartServerImpl implements IThirdPartyServer{
+
+	/**
+	 * List of all the subscribers
+	 */
+	private List<String> list_clients;
+	
+	/**
+	 * References on the raspberry pi server
+	 * @param args
+	 */
+	private IRaspberryPi rasp;
+	
+	public ThirdPartServerImpl() {
+		list_clients =  new ArrayList<String>();
+		
+		
+	}
+	
+	@Override
+	public boolean subscribe(int id, String url) {
+		return list_clients.add(url);
+	}
+
+	/**
+	 * Notify to all the client in list_clients
+	 * @param notify
+	 */
+	private void notifyAll(String msg) {
+		for(String u : list_clients) {
+			try
+	        {
+				URL url = new URL(u);
+                HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                connection.setDoOutput(true);
+                connection.connect();
+                PrintWriter writer = new PrintWriter(connection.getOutputStream());
+                writer.println(msg);
+                writer.flush();
+                writer.close();
+	        }catch(Exception e){e.printStackTrace();}
+		}
+	}
+	
+	/**
+	 * Notify a client
+	 * @param client
+	 */
+	private void notify(String client, String msg){
+		URL url;
+		try {
+			url = new URL(msg);
+	        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+	        connection.setDoOutput(true);
+	        connection.connect();
+	        PrintWriter writer = new PrintWriter(connection.getOutputStream());
+	        writer.println(msg);
+	        writer.flush();
+	        writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void switch_on(int id_outlet) {
+		rasp.switchOn(id_outlet);
+	}
+
+	@Override
+	public void switch_off(int id_outlet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTimer(int id_outlet, int timer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getListOutlet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void swith_on_all() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void swith_off_all() {
+		// TODO Auto-generated method stub
+		
+	}
+ 
+	
+}

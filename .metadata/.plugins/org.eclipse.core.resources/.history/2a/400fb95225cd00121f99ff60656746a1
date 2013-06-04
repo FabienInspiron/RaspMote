@@ -1,0 +1,93 @@
+package client;
+
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+
+import ws.IThirdPartyServer;
+import ws.ThirdPartServerImplService;
+
+
+/**
+ * wsimport -keep http://localhost:9999/ws/thirdpartpublisher?wsdl
+ * @author belli
+ *
+ */
+public class Client {
+	public static final String PORT = "9090";
+	
+	public static void main(String[] args) {
+		 
+		IThirdPartyServer serv = null;
+		ThirdPartServerImplService thirdPart = null;
+		
+		for (String str : getIps()) {
+			System.out.println(str);
+		}
+		
+		try {
+			// recuperation d'un reference sur le serveur
+			thirdPart = new ThirdPartServerImplService();
+			serv = thirdPart.getThirdPartServerImplPort();
+		} catch(Exception e){
+			System.err.println("Impossible de se conencter au serveur");
+			return;
+		}
+		
+		/**
+		 * Ecouter le serveur
+		 */
+		Thread d = new Thread(new NotificationListner(9090));
+		d.start();
+		
+		
+		serv.subscribe(34, "http://localhost:9090/");
+		
+		System.out.println(serv.getListOutlet());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+	
+	/**
+	 * Retourne toutes les adresses ips des carte réseau de la machine. Retourne seulement les addresses IPV4
+	 * 
+	 * @return Une liste des addresses ip
+	 */
+	public static List<String> getIps(){
+		List<String> ips = new ArrayList<String>();
+	 
+		try{
+			Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+	 
+	         while (interfaces.hasMoreElements()) {  // carte reseau trouvee
+	            NetworkInterface interfaceN = (NetworkInterface)interfaces.nextElement(); 
+	            Enumeration<InetAddress> ienum = interfaceN.getInetAddresses();
+	            
+	            while (ienum.hasMoreElements()) {  // retourne l adresse IPv4 et IPv6
+	                InetAddress ia = ienum.nextElement();
+	                String adress = ia.getHostAddress().toString();
+	 
+	                if( adress.length() < 16){          //On s'assure ainsi que l'adresse IP est bien IPv4
+	                    if(!adress.startsWith("127")){  //Ce n'est pas l'adresse IP Local' 
+	                        System.out.println(ia.getHostAddress());
+	                        ips.add(adress);
+	                    }
+	                } 
+	            }
+	        }
+	    }
+	    catch(Exception e){
+	        System.out.println("pas de carte reseau");
+	        e.printStackTrace();
+	    }
+	 
+	    return ips;
+	}
+}

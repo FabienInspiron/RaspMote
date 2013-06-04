@@ -1,0 +1,42 @@
+package client;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import com.mkyong.ws.IThirdPartyServer;
+import com.mkyong.ws.ThirdPartServerImplService;
+
+/**
+ * wsimport -keep http://localhost:9999/ws/thirdpartpublisher?wsdl
+ * @author belli
+ *
+ */
+public class Client {
+	public static final String PORT = "9090";
+	
+	public static void main(String[] args) {
+		 
+		// recuperation d'un reference sur le serveur
+		ThirdPartServerImplService thirdPart = new ThirdPartServerImplService();
+		IThirdPartyServer serv = thirdPart.getThirdPartServerImplPort();
+		
+		/**
+		 * Ecouter le serveur
+		 */
+		Thread d = new Thread(new NotificationListner(9090));
+		d.start();
+		
+		serv.subscribe(34, "http://localhost:9090/");
+		
+		//serv.switchOn(45);
+		
+		System.out.println(serv.getListOutlet());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+}

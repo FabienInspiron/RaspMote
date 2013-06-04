@@ -1,0 +1,40 @@
+package com.mkyong.ws;
+
+import java.util.List;
+
+import javax.jws.WebService;
+
+@WebService(endpointInterface = "com.mkyong.ws.IRaspberryPi")
+public class RaspberryPiServerImpl implements IRaspberryPi{
+
+	@Override
+	public void subscribe(int id, String url) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void switch_on(int id_outlet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void switch_off(int id_outlet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTimer(int id_outlet, int timer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getListOutlet() {
+		// TODO Auto-generated method stub
+		return "list";
+	}
+
+}

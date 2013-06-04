@@ -1,0 +1,54 @@
+package com.mkyong.ws;
+ 
+import java.util.List;
+
+import javax.jws.WebService;
+ 
+//Service Implementation
+@WebService(endpointInterface = "com.mkyong.ws.HelloWorld")
+public class ThirdPartServerImpl implements IThirdPartyServer{
+
+	@Override
+	public void subscribe(String url) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void switch_on(int id_outlet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void switch_off(int id_outlet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTimer(int id_outlet, int timer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Outlet> getListOutlet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void swith_on_all() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void swith_off_all() {
+		// TODO Auto-generated method stub
+		
+	}
+ 
+	
+}
