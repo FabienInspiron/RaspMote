@@ -1,6 +1,0 @@
-INDEX VERSION 1.126+/home/belli/Polytech/S8/Raspmote/JWS/.metadata/.plugins/org.eclipse.jdt.core
-1237947482.index
-4276860654.index
-3585291979.index
-2269670690.index
-1196978595.index

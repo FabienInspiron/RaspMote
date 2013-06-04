@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename Java project &apos;JWS&apos; to &apos;ThirdPartServer&apos;&#x0A;- Original element: &apos;JWS&apos;&#x0A;- Renamed element: &apos;JWS&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;JWS&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=JWS" name="ThirdPartServer" references="true" stamp="1370351331525" version="1.0"/>
-</session>

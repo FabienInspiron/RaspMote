@@ -1,5 +1,0 @@
-package com.mkyong.ws;
-
-public class RaspberryPiServerImpl implements IRaspberryPi{
-
-}
