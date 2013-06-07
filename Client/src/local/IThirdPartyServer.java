@@ -6,6 +6,9 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import ws.ObjectFactory;
+import ws.OutletArray;
 
 
 /**
@@ -16,6 +19,9 @@ import javax.jws.soap.SOAPBinding;
  */
 @WebService(name = "IThirdPartyServer", targetNamespace = "http://local/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
+@XmlSeeAlso({
+    ObjectFactory.class
+})
 public interface IThirdPartyServer {
 
 
@@ -67,11 +73,11 @@ public interface IThirdPartyServer {
     /**
      * 
      * @return
-     *     returns java.lang.String
+     *     returns ws.OutletArray
      */
     @WebMethod
     @WebResult(partName = "return")
-    public String getListOutlet();
+    public OutletArray getListOutlet();
 
     /**
      * 

@@ -1,2 +1,0 @@
-cd /home/belli/Polytech/S8/Raspmote/JWS/ThirdPartServer/src
-wsimport -keep http://localhost:9999/ws/raspberry?wsdl

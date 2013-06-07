@@ -1,0 +1,38 @@
+package metier;
+
+public class User {
+	private String nom;
+	private String mdp;
+	private String privilege;
+	
+	public User(String nom, String mdp) {
+		super();
+		this.nom = nom;
+		this.mdp = mdp;
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		User use = (User) obj;
+		
+		if(!nom.equals(use.getNom()))
+			return false;
+		
+		if(!mdp.equals(use.getMdp()))
+			return false;
+		
+		return true;
+	}
+	
+	public void setPrivilege(String priv){
+		privilege = priv;
+	}
+}

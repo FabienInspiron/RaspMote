@@ -6,6 +6,7 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 
 /**
@@ -16,6 +17,9 @@ import javax.jws.soap.SOAPBinding;
  */
 @WebService(name = "IRaspberryPi", targetNamespace = "http://ws/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
+@XmlSeeAlso({
+    ObjectFactory.class
+})
 public interface IRaspberryPi {
 
 
@@ -64,10 +68,19 @@ public interface IRaspberryPi {
     /**
      * 
      * @return
+     *     returns ws.OutletArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    public OutletArray getListOutlet();
+
+    /**
+     * 
+     * @return
      *     returns java.lang.String
      */
     @WebMethod
     @WebResult(partName = "return")
-    public String getListOutlet();
+    public String getListOutletXML();
 
 }

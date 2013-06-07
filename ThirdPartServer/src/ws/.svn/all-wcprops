@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws
+END
+RaspberryPiServerImplService.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/RaspberryPiServerImplService.java
+END
+Outlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/Outlet.java
+END
+IRaspberryPi.class
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/IRaspberryPi.class
+END
+OutletArray.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/OutletArray.java
+END
+ObjectFactory.class
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/ObjectFactory.class
+END
+ObjectFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/ObjectFactory.java
+END
+IRaspberryPi.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/IRaspberryPi.java
+END
+OutletArray.class
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/OutletArray.class
+END
+Outlet.class
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/Outlet.class
+END
+RaspberryPiServerImplService.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/RaspberryPiServerImplService.class
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/package-info.java
+END
+package-info.class
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/ws/package-info.class
+END

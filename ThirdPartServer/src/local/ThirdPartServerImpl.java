@@ -8,7 +8,9 @@ import java.util.List;
 
 import javax.jws.WebService;
 
+import metier.User;
 import ws.IRaspberryPi;
+import ws.OutletArray;
 import ws.RaspberryPiServerImplService;
  
 @WebService(endpointInterface = "local.IThirdPartyServer")
@@ -25,35 +27,46 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	 */
 	private IRaspberryPi rasp;
 	
+	
 	/**
-	 * Constructeur normal
+	 * List of the users
+	 */
+	private List<User> users;
+	
+	/**
+	 * Normal constructor
 	 */
 	public ThirdPartServerImpl() {
 		list_clients =  new ArrayList<String>();
+		users = new ArrayList<User>();
 		
 		/**
-		 * Recuperation d'une instance sur le serveur raspberry Pi
+		 * Get an instance of the Rapsberry Pi server
 		 */
 		RaspberryPiServerImplService ra = new RaspberryPiServerImplService();
 		rasp = ra.getRaspberryPiServerImplPort();
 		
 		/**
-		 * Souscription au serveur du raspberry Pi
+		 * Subscribe to the notification system
 		 */
 		rasp.subscribe(78, "http://localhost:9090/");
-		
 	}
 	
 	@Override
 	public boolean subscribe(int id, String url) {
-		return list_clients.add(url);
+		if(!list_clients.contains(url))
+			return list_clients.add(url);
+		else
+			return false;
 	}
 
 	/**
 	 * Notify to all the client in list_clients
 	 * @param notify
 	 */
-	private void notifyAll(String msg) {
+	public void notifyAllClients(String msg) {
+		System.out.println("NotifyAll " + msg);
+		
 		for(String u : list_clients) {
 			try
 	        {
@@ -69,46 +82,23 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 		}
 	}
 	
-	/**
-	 * Notify a client
-	 * @param client
-	 */
-	private void notify(String client, String msg){
-		URL url;
-		try {
-			url = new URL(msg);
-	        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-	        connection.setDoOutput(true);
-	        connection.connect();
-	        PrintWriter writer = new PrintWriter(connection.getOutputStream());
-	        writer.println(msg);
-	        writer.flush();
-	        writer.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	@Override
 	public void switch_on(int id_outlet) {
 		rasp.switchOn(id_outlet);
-		notifyAll();
 	}
 
 	@Override
 	public void switch_off(int id_outlet) {
 		rasp.switchOff(id_outlet);
-		notifyAll();
 	}
 
 	@Override
 	public void setTimer(int id_outlet, int timer) {
 		rasp.setTimer(id_outlet, timer);
-		notifyAll();
 	}
 
 	@Override
-	public String getListOutlet() {
+	public OutletArray getListOutlet() {
 		return rasp.getListOutlet();
 	}
 
@@ -120,8 +110,31 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	@Override
 	public void swith_off_all() {
 		// TODO Auto-generated method stub
-		
 	}
- 
 	
+	/**
+	 * Create a new user
+	 * @param username
+	 * @param password
+	 */
+	public void sign_in(String username, String password){
+		User u = new User(username, password);
+		users.add(u);
+	}
+	
+	/**
+	 * Check if the user is present
+	 * @param username
+	 * @param password
+	 */
+	public User sign_up(String username, String password){
+		User us = new User(username, password);
+		
+		for (User u : users) {
+			if(u.equals(us))
+				return u;
+		}
+		
+		return null;
+	}
 }

@@ -1,0 +1,52 @@
+package local;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Date;
+
+/**
+ * This listener notify all the clients when he receive a notification from the RaspberryPi server
+ * @author belli
+ *
+ */
+public class NotificationListner implements Runnable {
+	
+	int port;
+	ThirdPartServerImpl third;
+	
+	public NotificationListner(int port, ThirdPartServerImpl third) {
+		this.port = port;
+		this.third = third;
+	}
+
+	/**
+	 * Lauch a listener on a socket
+	 */
+	@Override
+	public void run() {
+		ServerSocket listener = null;
+        try {
+        	listener = new ServerSocket(port);
+            while (true) {
+                Socket socket = listener.accept();
+                try {
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    third.notifyAllClients("");
+                } finally {
+                    socket.close();
+                }
+            }
+        } catch (IOException e) {
+			e.printStackTrace();
+		}
+        finally {
+            try {
+				listener.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
+	}
+}

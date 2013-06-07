@@ -1,14 +1,24 @@
 package endpoint;
- 
+
 import javax.xml.ws.Endpoint;
 
+import local.NotificationListner;
 import local.ThirdPartServerImpl;
 
- 
-public class ThirdPartPublisher{
- 
+public class ThirdPartPublisher {
+
+	public static final String IP = "localhost";
+	public static final String PORT = "9998";
+	public static final String PATH = "/ws/thirdpartpublisher";
+	public static final String ADRESSE = "http://" + IP + ":" + PORT + PATH;
+	
 	public static void main(String[] args) {
-	   Endpoint.publish("http://localhost:9998/ws/thirdpartpublisher", new ThirdPartServerImpl());
-	   System.out.println("Server created");
-    }
+		ThirdPartServerImpl server = new ThirdPartServerImpl();
+		Thread t = new Thread(new NotificationListner(9090, server));
+		t.start();
+		
+		Endpoint.publish(ADRESSE, server);
+		System.out.println("Service publié a l'adresse : "+ ADRESSE);
+		System.out.println("Theard server created ...");
+	}
 }

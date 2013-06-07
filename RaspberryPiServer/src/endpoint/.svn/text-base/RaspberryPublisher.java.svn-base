@@ -1,0 +1,20 @@
+package endpoint;
+ 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.ws.Endpoint;
+
+import metier.Messages;
+import metier.Outlet;
+
+import ws.RaspberryPiServerImpl;
+
+ 
+public class RaspberryPublisher{
+ 
+	public static void main(String[] args) {
+	   RaspberryPiServerImpl rasp = new RaspberryPiServerImpl();
+	   Endpoint.publish("http://localhost:9999/ws/raspberry", rasp);
+	   System.out.println("Lancement du serveur raspberry PI... ");  
+    }
+}

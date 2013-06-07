@@ -1,0 +1,22 @@
+package endpoint;
+
+import javax.xml.ws.Endpoint;
+
+import local.NotificationListner;
+import local.ThirdPartServerImpl;
+
+public class ThirdPartPublisher {
+
+	public static final String IP = "localhost";
+	public static final String PORT = "9998";
+	public static final String PATH = "/ws/thirdpartpublisher";
+
+	public static void main(String[] args) {
+		ThirdPartServerImpl server = new ThirdPartServerImpl();
+		Thread t = new Thread(new NotificationListner(9090, server));
+		t.start();
+		
+		Endpoint.publish("http://" + IP + ":" + PORT + PATH, server);
+		System.out.println("Theard server created ...");
+	}
+}

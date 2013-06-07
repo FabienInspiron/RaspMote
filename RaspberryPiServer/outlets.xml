@@ -1,0 +1,16 @@
+<list>
+  <metier.Outlet>
+    <id>45</id>
+    <state>false</state>
+    <room>tutu</room>
+    <name>tutu</name>
+    <privileges>0</privileges>
+  </metier.Outlet>
+  <metier.Outlet>
+    <id>45</id>
+    <state>false</state>
+    <room>tutu</room>
+    <name>tutu</name>
+    <privileges>0</privileges>
+  </metier.Outlet>
+</list>

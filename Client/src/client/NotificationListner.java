@@ -1,10 +1,10 @@
 package client;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
 
 public class NotificationListner implements Runnable {
 	
@@ -20,26 +20,18 @@ public class NotificationListner implements Runnable {
 	@Override
 	public void run() {
 		ServerSocket listener = null;
-        try {
-        	listener = new ServerSocket(port);
-            while (true) {
-                Socket socket = listener.accept();
-                try {
-                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                    System.out.println(out);
-                } finally {
-                    socket.close();
-                }
-            }
-        } catch (IOException e) {
-			e.printStackTrace();
-		}
-        finally {
-            try {
-				listener.close();
+        	try {
+				listener = new ServerSocket(port);
+				while (true) {
+					Socket socket = listener.accept();
+					System.out.print("Notification reçu <--");
+					DataInputStream in = new DataInputStream(socket.getInputStream());
+					System.out.println(in.readLine());
+					System.out.println("-->");
+				}
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        }
 	}
 }

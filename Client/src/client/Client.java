@@ -1,54 +1,70 @@
 package client;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
+import java.util.Scanner;
 
-import ws.IThirdPartyServer;
-import ws.ThirdPartServerImplService;
+import ws.Outlet;
 
+import local.IThirdPartyServer;
+import local.ThirdPartServerImplService;
 
 /**
  * wsimport -keep http://localhost:9999/ws/thirdpartpublisher?wsdl
- * @author belli
+ * @author Belli, Gorrieri
  *
  */
 public class Client {
-	public static final String PORT_SUBSCRIBE = "9090";
+	public static final int PORT_SUBSCRIBE = 9091;
 	public static final String IP_SUBSCRIBE = "127.0.0.1";
 	
+	// Unique User IDentifier
+	//
+	private String uuid;
+
 	public static void main(String[] args) {
 		 
 		IThirdPartyServer serv = null;
 		ThirdPartServerImplService thirdPart = null;
 		
 		try {
-			// recuperation d'un reference sur le serveur
+			// Server instance
 			thirdPart = new ThirdPartServerImplService();
+			// Stub of web services
 			serv = thirdPart.getThirdPartServerImplPort();
 		} catch(Exception e){
-			System.err.println("Impossible de se connecter au serveur");
+			System.err.println("Connection to the server failed");
 			return;
 		}
 		
 		/**
-		 * Ecouter le serveur
+		 * Listner on server events
 		 */
-		Thread d = new Thread(new NotificationListner(9090));
+		Thread d = new Thread(new NotificationListner(PORT_SUBSCRIBE));
 		d.start();
-		
 		
 		serv.subscribe(34, "http://"+IP_SUBSCRIBE+":"+PORT_SUBSCRIBE+"/");
 		
-		System.out.println(serv.getListOutlet());
+		List<Outlet> ls = serv.getListOutlet().getItem();
+		for(Outlet o : ls) {
+			System.out.println(outletToString(o));
+		}
+		
 		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		serv.switchOn(45);
+		
+		Scanner sc = new Scanner(System.in);
+		sc.next();
     }
+	
+	public static String outletToString(Outlet o) {
+		return "<Outlet  id=" + o.getId() + ", state=" + o.isState() + ", room=" + o.getRoom()
+				+ ", name=" + o.getName() + ">";
+	}
 }

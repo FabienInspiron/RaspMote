@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/20/trunk/trunk/Client/src
+END
+lauch_two_servers.sh
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/28/trunk/trunk/Client/src/lauch_two_servers.sh
+END
+lauch_raspberry_sever.sh
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/28/trunk/trunk/Client/src/lauch_raspberry_sever.sh
+END
+lauch_thirdPart_server.sh
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/28/trunk/trunk/Client/src/lauch_thirdPart_server.sh
+END
+lauch_client.sh
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/28/trunk/trunk/Client/src/lauch_client.sh
+END
