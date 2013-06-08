@@ -1,13 +1,15 @@
 package local;
  
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebService;
 
+import metier.Adress;
 import metier.User;
 import ws.IRaspberryPi;
 import ws.OutletArray;
@@ -15,11 +17,13 @@ import ws.RaspberryPiServerImplService;
  
 @WebService(endpointInterface = "local.IThirdPartyServer")
 public class ThirdPartServerImpl implements IThirdPartyServer{
-
+	
+	public static final int START_PORT = 9990;
+	
 	/**
 	 * List of all the subscribers
 	 */
-	private List<String> list_clients;
+	private List<Adress> list_clients;
 	
 	/**
 	 * References on the raspberry pi server
@@ -33,11 +37,14 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	 */
 	private List<User> users;
 	
+	
+	private int port_ecoute;
+	
 	/**
 	 * Normal constructor
 	 */
 	public ThirdPartServerImpl() {
-		list_clients =  new ArrayList<String>();
+		list_clients =  new ArrayList<Adress>();
 		users = new ArrayList<User>();
 		
 		/**
@@ -49,15 +56,17 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 		/**
 		 * Subscribe to the notification system
 		 */
-		rasp.subscribe(78, "http://localhost:9090/");
+		port_ecoute = rasp.subscribe("localhost");
+		
+		System.out.println("Construction ...");
 	}
 	
 	@Override
-	public boolean subscribe(int id, String url) {
-		if(!list_clients.contains(url))
-			return list_clients.add(url);
-		else
-			return false;
+	public int subscribe(String host) {
+		int port = getFreePort(host);
+		Adress insock = new Adress(host, port);
+		list_clients.add(insock);
+		return port;
 	}
 
 	/**
@@ -65,19 +74,35 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	 * @param notify
 	 */
 	public void notifyAllClients(String msg) {
-		System.out.println("NotifyAll " + msg);
+		if(msg == null) return;
 		
-		for(String u : list_clients) {
+		// Temporare list
+		List<Adress> list_client_tmp = new ArrayList<Adress>(list_clients);
+		
+		for(Adress u : list_client_tmp) {	
 			try
-	        {
-				URL url = new URL(u);
-                HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-                connection.setDoOutput(true);
-                connection.connect();
-                PrintWriter writer = new PrintWriter(connection.getOutputStream());
-                writer.println(msg);
-                writer.flush();
-                writer.close();
+	        {	
+				System.out.println("Notification vers : " + u.getHost() +":"+ u.getPort());
+				Socket socket = new Socket(u.getHost(), u.getPort());
+
+		        PrintWriter pred = new PrintWriter(
+		                             new BufferedWriter(
+		                                new OutputStreamWriter(socket.getOutputStream())),
+		                             true);
+
+		        /**
+		         * Delete all the cariage return because the are used to
+		         * put the end of a socket.
+		         */
+		        msg = msg.trim();
+		        msg = msg.replaceAll("\\n", "");
+		        msg = msg.replaceAll("\\r\\n", ""); 
+		        msg += "\n";
+		        
+		        pred.println(msg);
+		        pred.flush();
+		        pred.close();
+		        socket.close();
 	        }catch(Exception e){e.printStackTrace();}
 		}
 	}
@@ -136,5 +161,37 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 		}
 		
 		return null;
+	}
+	
+	public int getPortEcoute(){
+		return port_ecoute;
+	}
+	
+	/**
+	 * Return a free port available for the host
+	 * This méthode try to found the open port and avoid it
+	 * @param host
+	 * @return
+	 */
+	public int getFreePort(String host) {
+		int port = START_PORT;
+		
+		boolean boucle = true;
+		
+		/**
+		 * Test if a port is free
+		 */
+		while (boucle){
+			try{
+				Socket socket = new Socket(host, port);
+				boucle = true;
+				port++;
+				socket.close();
+			}catch (Exception e) { 
+				boucle = false;
+			}
+		}
+		
+		return port;
 	}
 }

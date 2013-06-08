@@ -1,14 +1,14 @@
 10
 
 dir
-26
+38
 https://raspmote.googlecode.com/svn/trunk/trunk/RaspberryPiServer
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-06T12:12:31.108581Z
-26
+2013-06-08T12:36:09.127146Z
+38
 belli.fabien@gmail.com
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2013-06-04T14:55:34.000000Z
-0feefca3562e5167ed8224d805b3b922
-2013-06-05T07:17:25.322355Z
-5
+2013-06-08T07:17:50.000000Z
+8d994b42d52ce499ca32df8d1b7bb72e
+2013-06-08T12:36:09.127146Z
+38
 belli.fabien@gmail.com
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-295
+391
 
 .project
 file
@@ -99,7 +99,7 @@ dir
 
 build.xml
 file
-27
+
 
 
 
@@ -130,6 +130,40 @@ has-props
 
 
 2968
+
+outlets.xml
+file
+
+
+
+
+2013-06-06T12:18:17.000000Z
+d78205380051efc48796304b3f3d61f0
+2013-06-08T12:36:09.127146Z
+38
+belli.fabien@gmail.com
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+321
 
 src
 dir

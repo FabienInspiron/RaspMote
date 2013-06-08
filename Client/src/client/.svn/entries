@@ -1,15 +1,15 @@
 10
 
 dir
-26
+37
 https://raspmote.googlecode.com/svn/trunk/trunk/Client/src/client
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-05T14:22:41.483314Z
-20
-cyril.gorrieri@gmail.com
+2013-06-07T13:07:11.613531Z
+35
+belli.fabien@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -39,23 +39,10 @@ file
 
 
 
-
-1a19658cf8b4052b3f7978fae1108986
-2013-06-05T14:22:41.483314Z
-20
-cyril.gorrieri@gmail.com
-has-props
-
-NotificationListner.java
-file
-
-
-
-
-2013-06-04T14:55:34.000000Z
-a8061b5a9257ab3a7ef3342038228158
-2013-06-05T07:15:59.455421Z
-3
+2013-06-07T12:03:58.000000Z
+aba84ef3a7100931172ccef88491c457
+2013-06-07T13:07:11.613531Z
+35
 belli.fabien@gmail.com
 has-props
 
@@ -78,5 +65,39 @@ has-props
 
 
 
-972
+1597
+
+NotificationListner.java
+file
+
+
+
+
+2013-06-07T13:06:51.000000Z
+1e66ff63e72eaf320e851db14d97cfc3
+2013-06-07T13:07:11.613531Z
+35
+belli.fabien@gmail.com
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+947
 

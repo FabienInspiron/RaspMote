@@ -1,5 +1,7 @@
 package ws;
 
+import java.net.InetSocketAddress;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -14,10 +16,10 @@ import metier.Outlet;
 public interface IRaspberryPi {
 	/**
 	 * Subscribe to a server
-	 * @param url your own url
+	 * @param host of the client
 	 * @return
 	 */
-	@WebMethod void subscribe(int id, String url);
+	@WebMethod int subscribe(String host);
 	
 	/**
 	 * Switch the light on

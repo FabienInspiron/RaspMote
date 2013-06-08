@@ -1,8 +1,5 @@
 package metier;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 

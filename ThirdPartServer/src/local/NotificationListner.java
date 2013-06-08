@@ -38,8 +38,12 @@ public class NotificationListner implements Runnable {
 					BufferedReader d = new BufferedReader(
 							new InputStreamReader(in));
 
-					System.out.println("Message reçu : " + d.readLine());
-                    third.notifyAllClients("");
+					String msg = d.readLine();
+					
+                    third.notifyAllClients(msg);
+                    
+                    in.close();
+                    d.close();
                 } finally {
                     socket.close();
                 }

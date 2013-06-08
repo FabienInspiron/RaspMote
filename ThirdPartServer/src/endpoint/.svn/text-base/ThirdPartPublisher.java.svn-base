@@ -10,13 +10,15 @@ public class ThirdPartPublisher {
 	public static final String IP = "localhost";
 	public static final String PORT = "9998";
 	public static final String PATH = "/ws/thirdpartpublisher";
-
+	public static final String ADRESSE = "http://" + IP + ":" + PORT + PATH;
+	
 	public static void main(String[] args) {
 		ThirdPartServerImpl server = new ThirdPartServerImpl();
 		Thread t = new Thread(new NotificationListner(9090, server));
 		t.start();
 		
-		Endpoint.publish("http://" + IP + ":" + PORT + PATH, server);
+		Endpoint.publish(ADRESSE, server);
+		System.out.println("Service publié a l'adresse : "+ ADRESSE);
 		System.out.println("Theard server created ...");
 	}
 }

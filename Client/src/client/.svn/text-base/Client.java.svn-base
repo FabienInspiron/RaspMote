@@ -1,12 +1,12 @@
 package client;
 
 import java.util.List;
+import java.util.Scanner;
 
 import ws.Outlet;
 
 import local.IThirdPartyServer;
 import local.ThirdPartServerImplService;
-
 
 /**
  * wsimport -keep http://localhost:9999/ws/thirdpartpublisher?wsdl
@@ -16,7 +16,9 @@ import local.ThirdPartServerImplService;
 public class Client {
 	public static final int PORT_SUBSCRIBE = 9091;
 	public static final String IP_SUBSCRIBE = "127.0.0.1";
+	
 	// Unique User IDentifier
+	//
 	private String uuid;
 
 	public static void main(String[] args) {
@@ -40,7 +42,6 @@ public class Client {
 		Thread d = new Thread(new NotificationListner(PORT_SUBSCRIBE));
 		d.start();
 		
-		
 		serv.subscribe(34, "http://"+IP_SUBSCRIBE+":"+PORT_SUBSCRIBE+"/");
 		
 		List<Outlet> ls = serv.getListOutlet().getItem();
@@ -48,12 +49,19 @@ public class Client {
 			System.out.println(outletToString(o));
 		}
 		
+		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("switch_on invoke");
+		serv.switchOn(45);
+		
+		Scanner sc = new Scanner(System.in);
+		sc.next();
     }
 	
 	public static String outletToString(Outlet o) {

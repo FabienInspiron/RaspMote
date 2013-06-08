@@ -1,9 +1,0 @@
-<list>
-  <metier.Outlet>
-    <id__outlet>45</id__outlet>
-    <state>false</state>
-    <room>tutu</room>
-    <name>tutu</name>
-    <privileges>0</privileges>
-  </metier.Outlet>
-</list>

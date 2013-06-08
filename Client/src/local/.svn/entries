@@ -1,15 +1,15 @@
 10
 
 dir
-26
+37
 https://raspmote.googlecode.com/svn/trunk/trunk/Client/src/local
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-05T14:22:41.483314Z
-20
-cyril.gorrieri@gmail.com
+2013-06-07T13:07:11.613531Z
+35
+belli.fabien@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -39,18 +39,33 @@ file
 
 
 
-
-9064ecb004b6350b83ba4c43a25cae26
-2013-06-05T14:22:41.483314Z
-20
-cyril.gorrieri@gmail.com
+2013-06-07T12:43:21.000000Z
+d9f1df3063734c32f034fd73dfe11adc
+2013-06-07T13:07:11.613531Z
+35
+belli.fabien@gmail.com
 has-props
 
 
 
 
-IThirdPartyServer.class.r14
-IThirdPartyServer.class.r22
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1213
 
 IThirdPartyServer.java
 file
@@ -58,19 +73,33 @@ file
 
 
 
-
-a142041f2cd4d933ee9842ca3b390a33
-2013-06-05T14:22:41.483314Z
-20
-cyril.gorrieri@gmail.com
+2013-06-07T12:43:20.000000Z
+e90ccf9ddb35278f18c171000a9d8a87
+2013-06-07T13:07:11.613531Z
+35
+belli.fabien@gmail.com
 has-props
 
 
 
 
-IThirdPartyServer.java.r14
-IThirdPartyServer.java.r22
-IThirdPartyServer.java.mine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1897
 
 ThirdPartServerImplService.class
 file
@@ -78,11 +107,11 @@ file
 
 
 
-2013-06-06T09:30:53.000000Z
-9063a1cea01f8953f461872ced3cfa99
-2013-06-05T14:22:41.483314Z
-20
-cyril.gorrieri@gmail.com
+2013-06-07T12:43:21.000000Z
+a460599f49581b05afc2b8ace06738c9
+2013-06-07T13:07:11.613531Z
+35
+belli.fabien@gmail.com
 has-props
 
 
@@ -104,7 +133,7 @@ has-props
 
 
 
-2358
+2088
 
 ThirdPartServerImplService.java
 file
@@ -112,11 +141,11 @@ file
 
 
 
-2013-06-06T09:30:53.000000Z
-c7f77eeeaaa12e63592e19431bb9cde7
-2013-06-05T14:22:41.483314Z
-20
-cyril.gorrieri@gmail.com
+2013-06-07T12:43:20.000000Z
+92b711e8d576e80b72d29af174bcd3e2
+2013-06-07T13:07:11.613531Z
+35
+belli.fabien@gmail.com
 has-props
 
 
@@ -138,5 +167,5 @@ has-props
 
 
 
-3242
+2505
 

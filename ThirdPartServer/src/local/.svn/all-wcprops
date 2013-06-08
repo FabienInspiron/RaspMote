@@ -1,13 +1,13 @@
 K 25
 svn:wc:ra_dav:version-url
 V 54
-/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/local
+/svn/!svn/ver/33/trunk/trunk/ThirdPartServer/src/local
 END
 ThirdPartServerImpl.java
 K 25
 svn:wc:ra_dav:version-url
 V 79
-/svn/!svn/ver/19/trunk/trunk/ThirdPartServer/src/local/ThirdPartServerImpl.java
+/svn/!svn/ver/33/trunk/trunk/ThirdPartServer/src/local/ThirdPartServerImpl.java
 END
 IThirdPartyServer.java
 K 25
@@ -19,5 +19,5 @@ NotificationListner.java
 K 25
 svn:wc:ra_dav:version-url
 V 79
-/svn/!svn/ver/16/trunk/trunk/ThirdPartServer/src/local/NotificationListner.java
+/svn/!svn/ver/32/trunk/trunk/ThirdPartServer/src/local/NotificationListner.java
 END

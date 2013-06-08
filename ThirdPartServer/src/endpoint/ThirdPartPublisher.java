@@ -14,7 +14,8 @@ public class ThirdPartPublisher {
 	
 	public static void main(String[] args) {
 		ThirdPartServerImpl server = new ThirdPartServerImpl();
-		Thread t = new Thread(new NotificationListner(9090, server));
+		
+		Thread t = new Thread(new NotificationListner(server.getPortEcoute(), server));
 		t.start();
 		
 		Endpoint.publish(ADRESSE, server);

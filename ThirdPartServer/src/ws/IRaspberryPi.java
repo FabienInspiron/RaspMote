@@ -25,15 +25,15 @@ public interface IRaspberryPi {
 
     /**
      * 
-     * @param arg1
      * @param arg0
+     * @return
+     *     returns int
      */
     @WebMethod
-    public void subscribe(
+    @WebResult(partName = "return")
+    public int subscribe(
         @WebParam(name = "arg0", partName = "arg0")
-        int arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
+        String arg0);
 
     /**
      * 

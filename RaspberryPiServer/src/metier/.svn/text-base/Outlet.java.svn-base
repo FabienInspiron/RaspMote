@@ -56,14 +56,14 @@ public class Outlet {
 	 * switch the outlet on
 	 */
 	public void switch_on(){
-		state = false;
+		state = true;
 	}
 	
 	/**
 	 * switch the outlet off
 	 */
 	public void switch_off(){
-		state = true;
+		state = false;
 	}
 	
 	/**

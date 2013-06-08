@@ -13,10 +13,10 @@ public interface IThirdPartyServer{
  
 	/**
 	 * Subscribe to a server
-	 * @param url your own url
+	 * @param host is you
 	 * @return
 	 */
-	@WebMethod boolean subscribe(int id, String url);
+	@WebMethod int subscribe(String host);
 	
 	/**
 	 * Switch the light on

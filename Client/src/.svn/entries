@@ -1,15 +1,15 @@
 10
 
 dir
-26
+37
 https://raspmote.googlecode.com/svn/trunk/trunk/Client/src
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-05T14:22:41.483314Z
-20
-cyril.gorrieri@gmail.com
+2013-06-07T13:07:11.613531Z
+35
+belli.fabien@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -38,11 +38,11 @@ dir
 
 lauch_client.sh
 file
-28
 
 
 
-2013-06-06T19:49:27.000000Z
+delete
+2013-06-07T12:50:37.721000Z
 8f7d27cebea1b607dfe2107ddfc00212
 2013-06-06T19:50:03.035150Z
 28
@@ -72,11 +72,11 @@ belli.fabien@gmail.com
 
 lauch_raspberry_sever.sh
 file
-28
 
 
 
-2013-06-06T19:49:27.000000Z
+delete
+2013-06-07T12:50:37.711000Z
 02bf3f0fdeeef671c60520686337af8b
 2013-06-06T19:50:03.035150Z
 28
@@ -106,11 +106,11 @@ belli.fabien@gmail.com
 
 lauch_thirdPart_server.sh
 file
-28
 
 
 
-2013-06-06T19:49:27.000000Z
+delete
+2013-06-07T12:50:37.715000Z
 a84f15c047bad77cd18eff4aa256aedd
 2013-06-06T19:50:03.035150Z
 28
@@ -140,11 +140,11 @@ belli.fabien@gmail.com
 
 lauch_two_servers.sh
 file
-28
 
 
 
-2013-06-06T19:49:27.000000Z
+delete
+2013-06-07T12:50:37.706000Z
 8060177e49a5ec631eb916de0182960b
 2013-06-06T19:50:03.035150Z
 28
@@ -173,6 +173,9 @@ belli.fabien@gmail.com
 96
 
 local
+dir
+
+net
 dir
 
 ws

@@ -1,10 +1,11 @@
 package local;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
 
 /**
  * This listener notify all the clients when he receive a notification from the RaspberryPi server
@@ -32,8 +33,14 @@ public class NotificationListner implements Runnable {
             while (true) {
                 Socket socket = listener.accept();
                 try {
-                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                    third.notifyAllClients("");
+					DataInputStream in = new DataInputStream(
+							socket.getInputStream());
+					BufferedReader d = new BufferedReader(
+							new InputStreamReader(in));
+
+					String msg = d.readLine();
+					
+                    third.notifyAllClients(msg);
                 } finally {
                     socket.close();
                 }
