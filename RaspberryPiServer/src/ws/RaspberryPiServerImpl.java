@@ -47,8 +47,8 @@ public class RaspberryPiServerImpl implements IRaspberryPi{
 	}
 
 	@Override
-	public void setTimer(int id_outlet, int timer) {
-		dataManager.setTimer(id_outlet, timer);
+	public void setTimer(int id_outlet, int timer, int mode) {
+		dataManager.setTimer(id_outlet, this, timer, mode);
 	}
 
 	@Override
@@ -60,5 +60,10 @@ public class RaspberryPiServerImpl implements IRaspberryPi{
 	public String getListOutletXML(){
 		XStream xstream = new XStream(new DomDriver());
 		return xstream.toXML(dataManager.getListOutlet());
+	}
+
+	@Override
+	public void setPresenceSimulator(int idOutlet, int timeMax) {
+			dataManager.simulatePresence(idOutlet, this, timeMax);
 	}
 }

@@ -1,14 +1,14 @@
 10
 
 dir
-37
+41
 https://raspmote.googlecode.com/svn/trunk/trunk/ThirdPartServer/src
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-07T13:06:28.231717Z
-34
+2013-06-08T12:43:52.616328Z
+41
 belli.fabien@gmail.com
 
 
@@ -40,6 +40,9 @@ local
 dir
 
 metier
+dir
+
+net
 dir
 
 ws

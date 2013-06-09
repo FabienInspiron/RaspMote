@@ -1,5 +1,0 @@
-cd ThirdPartServer/
-ant clean
-ant
-wsimport -keep http://localhost:9999/ws/raspberry?wsdl
-ant run

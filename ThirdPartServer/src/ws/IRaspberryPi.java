@@ -55,6 +55,7 @@ public interface IRaspberryPi {
 
     /**
      * 
+     * @param arg2
      * @param arg1
      * @param arg0
      */
@@ -63,7 +64,9 @@ public interface IRaspberryPi {
         @WebParam(name = "arg0", partName = "arg0")
         int arg0,
         @WebParam(name = "arg1", partName = "arg1")
-        int arg1);
+        int arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        int arg2);
 
     /**
      * 
@@ -82,5 +85,17 @@ public interface IRaspberryPi {
     @WebMethod
     @WebResult(partName = "return")
     public String getListOutletXML();
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    public void setPresenceSimulator(
+        @WebParam(name = "arg0", partName = "arg0")
+        int arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        int arg1);
 
 }

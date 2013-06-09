@@ -11,6 +11,7 @@ import javax.jws.WebService;
 
 import metier.Adress;
 import metier.User;
+
 import ws.IRaspberryPi;
 import ws.OutletArray;
 import ws.RaspberryPiServerImplService;
@@ -57,15 +58,20 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 		 * Subscribe to the notification system
 		 */
 		port_ecoute = rasp.subscribe("localhost");
-		
-		System.out.println("Construction ...");
 	}
 	
 	@Override
 	public int subscribe(String host) {
 		int port = getFreePort(host);
+		
 		Adress insock = new Adress(host, port);
-		list_clients.add(insock);
+		System.out.println("Nouvelle souscription de : " + insock);
+		
+		if(!list_clients.contains(insock)){
+			list_clients.add(insock);
+			System.out.println("Ajout de " + insock);
+		}
+		
 		return port;
 	}
 
@@ -118,8 +124,8 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	}
 
 	@Override
-	public void setTimer(int id_outlet, int timer) {
-		rasp.setTimer(id_outlet, timer);
+	public void setTimer(int id_outlet, int timer, int mode) {
+		rasp.setTimer(id_outlet, timer, mode);
 	}
 
 	@Override
@@ -193,5 +199,10 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 		}
 		
 		return port;
+	}
+
+	@Override
+	public void simulatePresence(int outlet, int timeMax) {
+		rasp.setPresenceSimulator(outlet, timeMax);
 	}
 }

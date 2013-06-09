@@ -35,6 +35,9 @@ public class NotificationListner implements Runnable {
 					String msg = d.readLine();
 					System.out.println("Notification reçu : "+ msg);
 					
+					d.close();
+					in.close();
+					socket.close();
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

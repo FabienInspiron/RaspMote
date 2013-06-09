@@ -41,6 +41,9 @@ public class NotificationListner implements Runnable {
 					String msg = d.readLine();
 					
                     third.notifyAllClients(msg);
+                    
+                    in.close();
+                    d.close();
                 } finally {
                     socket.close();
                 }

@@ -35,7 +35,7 @@ public interface IThirdPartyServer{
 	 * @param id_outlet the outlet 
 	 * @param timer the time in second
 	 */
-	@WebMethod void setTimer(int id_outlet, int timer);
+	@WebMethod void setTimer(int id_outlet, int timer, int mode);
 	
 	/**
 	 * Return the list of the outlet
@@ -52,4 +52,10 @@ public interface IThirdPartyServer{
 	 */
 	@WebMethod void swith_off_all();
  
+	/**
+	 * Simulate a presence with a thread
+	 * @param outlet
+	 * @param timeMax
+	 */
+	@WebMethod void simulatePresence(int outlet, int timeMax);
 }

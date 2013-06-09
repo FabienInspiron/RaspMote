@@ -1,14 +1,14 @@
 10
 
 dir
-37
+40
 https://raspmote.googlecode.com/svn/trunk/trunk/Client/src
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-07T13:07:11.613531Z
-35
+2013-06-08T12:42:25.349608Z
+40
 belli.fabien@gmail.com
 
 
@@ -35,142 +35,6 @@ b35a5cc3-cdc2-6e81-269e-00ee3418f330
 
 client
 dir
-
-lauch_client.sh
-file
-
-
-
-delete
-2013-06-07T12:50:37.721000Z
-8f7d27cebea1b607dfe2107ddfc00212
-2013-06-06T19:50:03.035150Z
-28
-belli.fabien@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-97
-
-lauch_raspberry_sever.sh
-file
-
-
-
-delete
-2013-06-07T12:50:37.711000Z
-02bf3f0fdeeef671c60520686337af8b
-2013-06-06T19:50:03.035150Z
-28
-belli.fabien@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-45
-
-lauch_thirdPart_server.sh
-file
-
-
-
-delete
-2013-06-07T12:50:37.715000Z
-a84f15c047bad77cd18eff4aa256aedd
-2013-06-06T19:50:03.035150Z
-28
-belli.fabien@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-97
-
-lauch_two_servers.sh
-file
-
-
-
-delete
-2013-06-07T12:50:37.706000Z
-8060177e49a5ec631eb916de0182960b
-2013-06-06T19:50:03.035150Z
-28
-belli.fabien@gmail.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-96
 
 local
 dir

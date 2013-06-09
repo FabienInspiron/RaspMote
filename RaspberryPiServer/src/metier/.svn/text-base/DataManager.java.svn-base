@@ -10,8 +10,11 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
+import ws.IRaspberryPi;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -26,12 +29,23 @@ public class DataManager {
 	/**
 	 * List of serveur client
 	 */
-	List<Adress> list_server; 
+	List<Adress> list_server;
 	
 	/**
 	 * List of outlet
 	 */
 	List<Outlet> list_outlet;
+	
+	/**
+	 * List timer
+	 */
+	HashMap<Integer, TimerLauch> list_timer;
+	
+	
+	/**
+	 * List of PresenceSimulatorSThread
+	 */
+	HashMap<Integer, ThreadPresenceSimulator> list_presence_simulator;
 	
 	/**
 	 * File where outlets are serialized
@@ -41,6 +55,9 @@ public class DataManager {
 	private DataManager() {
 		list_server = new ArrayList<Adress>();
 		list_outlet = new ArrayList<Outlet>();
+		list_timer = new HashMap<Integer, TimerLauch>();
+		list_presence_simulator = new HashMap<Integer, ThreadPresenceSimulator>();
+		
 		LastId = 0;
 	}
 
@@ -83,7 +100,8 @@ public class DataManager {
 	 * @param url
 	 */
 	public void addServer(Adress at) {
-		list_server.add(at);
+		if(!list_server.contains(at))
+			list_server.add(at);
 	}
 	
 	/**
@@ -146,15 +164,19 @@ public class DataManager {
 	}
 
 	
-	/**
+	/***
 	 * Add a timer to an outlet
 	 * @param id_outlet
-	 * @param timer
+	 * @param rasp
+	 * @param timer in secondes
+	 * @param mode
 	 */
-	public void setTimer(int id_outlet, int timer) {
-		System.out.println("set_timer");
+	public void setTimer(int id_outlet, IRaspberryPi rasp, int timer, int mode) {
+		TimerLauch lauch = new TimerLauch(id_outlet,rasp,timer,mode);
+		Thread t = new Thread(lauch);
+		t.start();
 		
-		notifyAllClients("");
+		list_timer.put(new Integer(id_outlet), lauch);
 	}
 	
 	/**
@@ -251,5 +273,46 @@ public class DataManager {
 		
 		System.out.println("free port found : " + port);
 		return port;
+	}
+	
+	/**
+	 * Lauch presence simulator ans put it in the list
+	 * @param numOutlet
+	 * @param rasp
+	 * @param time
+	 */
+	public void simulatePresence(int numOutlet,IRaspberryPi rasp, int time){
+		ThreadPresenceSimulator presence = new ThreadPresenceSimulator(numOutlet, rasp, time);
+		list_presence_simulator.put(new Integer(numOutlet), presence);
+		
+		Thread t = new Thread(presence);
+		t.start();
+	}
+	
+	/**
+	 * Stop the simulation
+	 * @param numOutlet is he outlet to stop
+	 */
+	public void stopSimulatePresence(int numOutlet){
+		ThreadPresenceSimulator theThread = list_presence_simulator.get(new Integer(numOutlet));
+		
+		if(theThread!=null){
+			theThread.stop();
+		
+			// Del frome the list
+			list_presence_simulator.remove(new Integer(numOutlet));
+		}
+	}
+	
+	/**
+	 * Stop a timer and remove from the list
+	 * @param numOutlet
+	 */
+	public void stopTimer(int numOutlet){
+		TimerLauch timerlauch = list_timer.get(new Integer(numOutlet));
+		Thread t = new Thread(timerlauch);
+		t.interrupted();
+		
+		list_timer.remove(new Integer(numOutlet));
 	}
 }

@@ -1,5 +1,0 @@
-cd Client
-ant clean
-ant 
-wsimport -keep http://localhost:9998/ws/thirdpartpublisher?wsdl
-ant run

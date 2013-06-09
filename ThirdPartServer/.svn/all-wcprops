@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 44
-/svn/!svn/ver/34/trunk/trunk/ThirdPartServer
+/svn/!svn/ver/41/trunk/trunk/ThirdPartServer
 END
 build.xml
 K 25
@@ -18,6 +18,6 @@ END
 .classpath
 K 25
 svn:wc:ra_dav:version-url
-V 54
-/svn/!svn/ver/7/trunk/trunk/ThirdPartServer/.classpath
+V 55
+/svn/!svn/ver/43/trunk/trunk/ThirdPartServer/.classpath
 END

@@ -1,0 +1,2 @@
+xterm -hold -e ./lauch_client_wihout_compil.sh&
+sleep 4

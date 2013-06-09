@@ -12,7 +12,6 @@
     <property name="source" value="1.6"/>
     <path id="RaspberryPiServer.classpath">
         <pathelement location="bin"/>
-        <pathelement location="../lib/jdom-2.0.5.jar"/>
         <pathelement location="../lib/xstream-1.4.4.jar"/>
     </path>
     <target name="init">
@@ -57,6 +56,11 @@
     </target>
     <target name="JVM">
         <java classname="com.thoughtworks.xstream.core.JVM" failonerror="true" fork="yes">
+            <classpath refid="RaspberryPiServer.classpath"/>
+        </java>
+    </target>
+    <target name="Adress">
+        <java classname="metier.Adress" failonerror="true" fork="yes">
             <classpath refid="RaspberryPiServer.classpath"/>
         </java>
     </target>

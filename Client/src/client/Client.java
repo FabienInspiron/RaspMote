@@ -54,25 +54,27 @@ public class Client {
 		}
 		*/
 		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		System.out.println("switch_on invoke");
+//		serv.switchOn(45);
+//		
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		System.out.println("switch_on invoke");
+//		serv.switchOn(45);
 		
-		System.out.println("switch_on invoke");
-		serv.switchOn(45);
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("switch_on invoke");
-		serv.switchOn(45);
+		serv.setTimer(45, 30, 1);
 		
 		Scanner sc = new Scanner(System.in);
 		sc.next();

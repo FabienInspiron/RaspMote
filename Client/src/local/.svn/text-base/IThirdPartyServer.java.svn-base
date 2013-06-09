@@ -27,18 +27,15 @@ public interface IThirdPartyServer {
 
     /**
      * 
-     * @param arg1
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns int
      */
     @WebMethod
     @WebResult(partName = "return")
-    public boolean subscribe(
+    public int subscribe(
         @WebParam(name = "arg0", partName = "arg0")
-        int arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
+        String arg0);
 
     /**
      * 
@@ -60,6 +57,7 @@ public interface IThirdPartyServer {
 
     /**
      * 
+     * @param arg2
      * @param arg1
      * @param arg0
      */
@@ -68,7 +66,9 @@ public interface IThirdPartyServer {
         @WebParam(name = "arg0", partName = "arg0")
         int arg0,
         @WebParam(name = "arg1", partName = "arg1")
-        int arg1);
+        int arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        int arg2);
 
     /**
      * 
@@ -90,5 +90,17 @@ public interface IThirdPartyServer {
      */
     @WebMethod(operationName = "swith_off_all")
     public void swithOffAll();
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    public void simulatePresence(
+        @WebParam(name = "arg0", partName = "arg0")
+        int arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        int arg1);
 
 }

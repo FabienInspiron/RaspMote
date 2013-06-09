@@ -38,7 +38,14 @@ public interface IRaspberryPi {
 	 * @param id_outlet the outlet 
 	 * @param timer the time in second
 	 */
-	@WebMethod void setTimer(int id_outlet, int timer);
+	@WebMethod public void setTimer(int id_outlet, int timer, int mode);
+	
+	/**
+	 * Put a presence simulator
+	 * @param idOutlet
+	 * @param timeMax
+	 */
+	@WebMethod void setPresenceSimulator(int idOutlet, int timeMax);
 	
 	/**
 	 * Return the list of the outlet

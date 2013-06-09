@@ -1,68 +1,69 @@
 package metier;
 
-import javax.swing.ImageIcon;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 
 /**
  * Class for the outlet
- * @author belli
+ * @author Belli, Gorrieri
  *
  */
+@XmlRootElement(name = "IRaspberryPi", namespace ="http://ws/")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "outlet", propOrder = {
+    "id",
+    "state",
+    "room",
+    "name"}
+)
 public class Outlet {
 	
 	/**
 	 * Identification of the outlet
 	 */
-	int id_outlet;
+	public int id;
 	
 	/**
 	 * Save the state of the outlet
 	 */
-	boolean state;
+	public boolean state;
 	
 	/**
 	 * Name and room of the outlet
 	 */
-	String room;
-	String name;
+	public String room;
+	
+	public String name;
 	
 	/**
 	 * Image of the outlet
 	 */
-	ImageIcon image;
-
-	/**
-	 * Level of privileges of each outlet
-	 */
-	int privileges;
 	
-	/**
-	 * Normal contructor
-	 * @param id_outlet
-	 * @param room
-	 * @param name
-	 * @param image
-	 */
-	public Outlet(int id_outlet, String room, String name, ImageIcon image) {
-		super();
-		this.id_outlet = id_outlet;
-		this.room = room;
+	//byte[] image;
+	
+	public void init(int id, boolean state, String name, String room){
+		this.id = id;
+		this.state = state;
 		this.name = name;
-		this.image = image;
-		this.state = false;
-	}	
+		this.room = room;
+	}
+	//ImageIcon image;
 	
 	/**
 	 * switch the outlet on
 	 */
 	public void switch_on(){
-		state = false;
+		state = true;
 	}
 	
 	/**
 	 * switch the outlet off
 	 */
 	public void switch_off(){
-		state = true;
+		state = false;
 	}
 	
 	/**
@@ -70,6 +71,11 @@ public class Outlet {
 	 * @return
 	 */
 	public int getID(){
-		return id_outlet;
+		return id;
+	}
+	
+	public static String OutletToString(Outlet o) {
+		return "Outlet [id=" + o.id + ", state=" + o.state + ", room=" + o.room
+				+ ", name=" + o.name + "]";
 	}
 }
