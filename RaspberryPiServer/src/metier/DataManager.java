@@ -34,7 +34,7 @@ public class DataManager {
 	/**
 	 * List of outlet
 	 */
-	List<Outlet> list_outlet;
+	HashMap<Integer, Outlet> list_outlet;
 	
 	/**
 	 * List timer
@@ -54,7 +54,7 @@ public class DataManager {
 	
 	private DataManager() {
 		list_server = new ArrayList<Adress>();
-		list_outlet = new ArrayList<Outlet>();
+		list_outlet = new HashMap<Integer, Outlet>();
 		list_timer = new HashMap<Integer, TimerLauch>();
 		list_presence_simulator = new HashMap<Integer, ThreadPresenceSimulator>();
 		
@@ -76,9 +76,9 @@ public class DataManager {
 		try {
 			XStream xstream = new XStream(new DomDriver());
 			FileInputStream fis = new FileInputStream(file_outlet);
-			list_outlet = (List<Outlet>) xstream.fromXML(fis);
+			list_outlet = (HashMap<Integer, Outlet>) xstream.fromXML(fis);
 		} catch (Exception e) {
-			list_outlet = new ArrayList<Outlet>();
+			list_outlet = new HashMap<Integer, Outlet>();
 		} 
 	}
 	
@@ -123,7 +123,7 @@ public class DataManager {
 	public int addOutlet(Outlet outl){
 		outl.id = LastId;
 		LastId++;
-		list_outlet.add(outl);
+		list_outlet.put(new Integer(outl.id), outl);
 		//storeOutlet();
 		
 		notifyAllClients(Messages.addOutlet(outl));
@@ -135,32 +135,31 @@ public class DataManager {
 	 * @param id
 	 */
 	public void removeOutlet(int id) {
-		Iterator<Outlet> it = list_outlet.iterator();
-		while(it.hasNext()) {
-			Outlet o = it.next();
-			if(o.id == id) {
-				it.remove();
-				break;
-			}
-		}
+		list_outlet.remove(id);
 	}
 	
 	/**
-	 * Return the outlet designed by id
-	 * @param id
+	 * Return the hashmap
 	 * @return
 	 */
-	public Outlet getOutlet(int id){
-		for (Outlet o : list_outlet) {
-			if(o.getID() == id)
-				return o;
-		}
-		
-		return null;
+	public HashMap<Integer, Outlet> getHashOutlet() {
+		return list_outlet;
 	}
 	
-	public List<Outlet> getListOutlet() {
-		return list_outlet;
+	/**
+	 * Return a list of outlet
+	 * @return
+	 */
+	public ArrayList<Outlet> getListOutlet() {
+		return new ArrayList<Outlet>(list_outlet.values());
+	}
+
+	/**
+	 * Return a list of the integer outlet
+	 * @return
+	 */
+	public ArrayList<Integer> getListOutletKey() {
+		return new ArrayList<Integer>(list_outlet.keySet());
 	}
 
 	
@@ -186,11 +185,11 @@ public class DataManager {
 	public void switch_on(int id_outlet) {
 		System.out.println("switch_on");
 		
-		Outlet o = getOutlet(id_outlet);
+		Outlet o = list_outlet.get(id_outlet);
 		if(o != null)
 			o.switch_on();
 		
-		notifyAllClients(Messages.outletChange(getOutlet(id_outlet)));
+		notifyAllClients(Messages.outletChange(o));
 	}
 	
 	/**
@@ -200,11 +199,11 @@ public class DataManager {
 	public void switch_off(int id_outlet) {
 		System.out.println("switch_off");
 		
-		Outlet o = getOutlet(id_outlet);
+		Outlet o = list_outlet.get(id_outlet);
 		if(o != null)
 			o.switch_on();
 		
-		notifyAllClients(Messages.outletChange(getOutlet(id_outlet)));
+		notifyAllClients(Messages.outletChange(o));
 	}
 	/**
 	 * Notify to all the client in list_clients

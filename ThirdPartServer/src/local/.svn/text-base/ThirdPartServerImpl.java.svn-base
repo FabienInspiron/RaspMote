@@ -205,4 +205,9 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	public void simulatePresence(int outlet, int timeMax) {
 		rasp.setPresenceSimulator(outlet, timeMax);
 	}
+
+	@Override
+	public void stopPresenceSimulator(int outlet) {
+		rasp.stopPresenceSimulator(outlet);
+	}
 }

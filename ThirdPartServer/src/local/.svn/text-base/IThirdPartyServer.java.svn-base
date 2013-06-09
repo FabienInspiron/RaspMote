@@ -58,4 +58,7 @@ public interface IThirdPartyServer{
 	 * @param timeMax
 	 */
 	@WebMethod void simulatePresence(int outlet, int timeMax);
+	
+	@WebMethod void stopPresenceSimulator(int outlet);
+	
 }

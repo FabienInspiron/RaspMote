@@ -47,6 +47,8 @@ public interface IRaspberryPi {
 	 */
 	@WebMethod void setPresenceSimulator(int idOutlet, int timeMax);
 	
+	@WebMethod void stopPresenceSimulator(int idOutlet);
+	
 	/**
 	 * Return the list of the outlet
 	 */

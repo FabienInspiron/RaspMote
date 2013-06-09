@@ -1,14 +1,14 @@
 10
 
 dir
-45
+46
 https://raspmote.googlecode.com/svn/trunk/trunk/Client/src
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-09T16:58:36.373049Z
-45
+2013-06-09T20:36:18.779288Z
+46
 belli.fabien@gmail.com
 
 
@@ -34,6 +34,9 @@ b35a5cc3-cdc2-6e81-269e-00ee3418f330
 0
 
 client
+dir
+
+interfaceGraphique
 dir
 
 local

@@ -1,8 +1,11 @@
 package client;
 
+import interfaceGraphique.displayOutlet;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -86,13 +89,31 @@ public class Client {
 //		System.out.println("switch_on invoke");
 //		serv.switchOn(45);
 		
-		serv.setTimer(45, 3, 1);
-		serv.setTimer(45, 4, 1);
-		serv.setTimer(45, 5, 1);
-		serv.setTimer(45, 6, 1);
+//		serv.setTimer(45, 3, 1);
+//		serv.setTimer(45, 4, 1);
+//		serv.setTimer(45, 5, 1);
+//		serv.setTimer(45, 6, 1);
+//		
+//		Scanner sc = new Scanner(System.in);
+//		sc.next();
 		
-		Scanner sc = new Scanner(System.in);
-		sc.next();
+		ArrayList<Outlet> li = new ArrayList<Outlet>();
+		Outlet o1 = new Outlet();
+		o1.setId(1);
+		o1.setName("Lampe");
+		o1.setRoom("Salle à manger");
+		o1.setState(false);
+		
+		Outlet o2 = new Outlet();
+		o2.setId(1);
+		o2.setName("TV");
+		o2.setRoom("Salle à manger");
+		o2.setState(false);
+		
+		li.add(o1);
+		li.add(o2);
+		
+		new displayOutlet(o1, serv);
     }
 	
 	public static String outletToString(Outlet o) {

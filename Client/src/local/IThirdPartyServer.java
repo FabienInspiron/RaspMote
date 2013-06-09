@@ -103,4 +103,13 @@ public interface IThirdPartyServer {
         @WebParam(name = "arg1", partName = "arg1")
         int arg1);
 
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    public void stopPresenceSimulator(
+        @WebParam(name = "arg0", partName = "arg0")
+        int arg0);
+
 }

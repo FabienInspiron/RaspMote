@@ -64,6 +64,11 @@ public class RaspberryPiServerImpl implements IRaspberryPi{
 
 	@Override
 	public void setPresenceSimulator(int idOutlet, int timeMax) {
-			dataManager.simulatePresence(idOutlet, this, timeMax);
+		dataManager.simulatePresence(idOutlet, this, timeMax);
+	}
+
+	@Override
+	public void stopPresenceSimulator(int idOutlet) {
+		dataManager.stopSimulatePresence(idOutlet);	
 	}
 }
