@@ -1,14 +1,14 @@
 10
 
 dir
-40
+45
 https://raspmote.googlecode.com/svn/trunk/trunk/Client
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-08T12:42:25.349608Z
-40
+2013-06-09T16:58:36.373049Z
+45
 belli.fabien@gmail.com
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2013-06-04T14:55:34.000000Z
-0feefca3562e5167ed8224d805b3b922
-2013-06-05T07:15:59.455421Z
-3
+2013-06-09T15:13:43.000000Z
+0c2cb40b396192214f23a2833f0b9ef4
+2013-06-09T16:58:36.373049Z
+45
 belli.fabien@gmail.com
 has-props
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-295
+388
 
 .project
 file
@@ -103,10 +103,10 @@ file
 
 
 
-2013-06-09T11:10:46.000000Z
-16770cac86ff825f0b5345a02e00d975
-2013-06-06T19:16:02.110502Z
-27
+2013-06-09T16:38:35.000000Z
+f2effc22be219d839f2f3f993f5a9ed9
+2013-06-09T16:58:36.373049Z
+45
 belli.fabien@gmail.com
 has-props
 
@@ -129,7 +129,7 @@ has-props
 
 
 
-2589
+2648
 
 lauch_client.sh
 file
@@ -137,10 +137,10 @@ file
 
 
 
-2013-06-06T21:14:35.000000Z
-9debd2114465bd331bd3e6d7fbac0412
-2013-06-06T21:18:04.716062Z
-29
+2013-06-09T12:54:55.000000Z
+c3dbd93070479c1d79073315925b5c7b
+2013-06-09T12:55:13.640783Z
+44
 belli.fabien@gmail.com
 has-props
 
@@ -165,13 +165,81 @@ has-props
 
 110
 
+lauch_client_wihout_compil.sh
+file
+
+
+
+
+2013-06-09T12:54:55.000000Z
+3901416f196477c33c0c2c47194375ef
+2013-06-09T12:55:13.640783Z
+44
+belli.fabien@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18
+
+lauch_many_clients.sh
+file
+
+
+
+
+2013-06-09T12:54:55.000000Z
+28b9829ba04a5ab8e9a1f764a3c938ee
+2013-06-09T12:55:13.640783Z
+44
+belli.fabien@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+224
+
 lauch_raspberry_sever.sh
 file
 
 
 
 
-2013-06-06T19:23:07.000000Z
+2013-06-09T12:54:55.000000Z
 02bf3f0fdeeef671c60520686337af8b
 2013-06-06T21:18:04.716062Z
 29
@@ -205,10 +273,10 @@ file
 
 
 
-2013-06-06T21:13:10.000000Z
-24fd0d9fed5f3db114b76769f4ec9a69
-2013-06-06T21:18:04.716062Z
-29
+2013-06-09T12:54:55.000000Z
+71bb6097d2502b9fc3b1f7bb62b7f4db
+2013-06-09T12:55:13.640783Z
+44
 belli.fabien@gmail.com
 has-props
 
@@ -239,7 +307,7 @@ file
 
 
 
-2013-06-06T19:35:40.000000Z
+2013-06-09T12:54:55.000000Z
 8060177e49a5ec631eb916de0182960b
 2013-06-06T21:18:04.716062Z
 29

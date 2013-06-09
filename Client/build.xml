@@ -12,6 +12,7 @@
     <property name="source" value="1.6"/>
     <path id="Client.classpath">
         <pathelement location="bin"/>
+        <pathelement location="../lib/jdom-2.0.5.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -48,7 +49,7 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="run">
+    <target name="Client">
         <java classname="client.Client" failonerror="true" fork="yes">
             <classpath refid="Client.classpath"/>
         </java>

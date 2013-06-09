@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 57
-/svn/!svn/ver/38/trunk/trunk/RaspberryPiServer/src/metier
+/svn/!svn/ver/45/trunk/trunk/RaspberryPiServer/src/metier
 END
 TimerLauch.java
 K 25
@@ -13,7 +13,7 @@ MessageSend.java
 K 25
 svn:wc:ra_dav:version-url
 V 74
-/svn/!svn/ver/43/trunk/trunk/RaspberryPiServer/src/metier/MessageSend.java
+/svn/!svn/ver/45/trunk/trunk/RaspberryPiServer/src/metier/MessageSend.java
 END
 ThreadPresenceSimulator.java
 K 25
@@ -31,7 +31,7 @@ Messages.java
 K 25
 svn:wc:ra_dav:version-url
 V 71
-/svn/!svn/ver/30/trunk/trunk/RaspberryPiServer/src/metier/Messages.java
+/svn/!svn/ver/45/trunk/trunk/RaspberryPiServer/src/metier/Messages.java
 END
 User.java
 K 25

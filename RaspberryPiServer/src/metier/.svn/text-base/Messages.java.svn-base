@@ -15,13 +15,15 @@ public class Messages {
 	 */
 	public static XStream xstream = new XStream(new DomDriver());
 
+	public static int time = 0;
+	
 	/**
 	 * Construct the notify xml query to send
 	 * @param out
 	 * @return
 	 */
 	public static String addOutlet(Outlet out) {
-		MessageSend ms = new MessageSend("ADD", out);
+		MessageSend ms = new MessageSend("ADD", out, time++);
 		return xstream.toXML(ms);
 	}
 
@@ -31,18 +33,18 @@ public class Messages {
 	 * @return
 	 */
 	public static String removeOutlet(Outlet out){
-		MessageSend ms = new MessageSend("ADD", out);
+		MessageSend ms = new MessageSend("ADD", out,time++);
 		return xstream.toXML(ms);
 	}
 	
 	
 	public static String listNeedToBeUpdate(){
-		MessageSend ms = new MessageSend("LIST", null);
+		MessageSend ms = new MessageSend("LIST", null,time++);
 		return xstream.toXML(ms);
 	}
 	
 	public static String outletChange(Outlet out){
-		MessageSend ms = new MessageSend("CHANGE", out);
+		MessageSend ms = new MessageSend("CHANGE", out,time++);
 		return xstream.toXML(ms);
 	}
 	

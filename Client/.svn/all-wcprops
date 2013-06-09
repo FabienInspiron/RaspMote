@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 35
-/svn/!svn/ver/40/trunk/trunk/Client
+/svn/!svn/ver/45/trunk/trunk/Client
 END
 lauch_two_servers.sh
 K 25
@@ -19,13 +19,25 @@ lauch_thirdPart_server.sh
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/svn/!svn/ver/29/trunk/trunk/Client/lauch_thirdPart_server.sh
+/svn/!svn/ver/44/trunk/trunk/Client/lauch_thirdPart_server.sh
+END
+lauch_many_clients.sh
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/44/trunk/trunk/Client/lauch_many_clients.sh
+END
+lauch_client_wihout_compil.sh
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/44/trunk/trunk/Client/lauch_client_wihout_compil.sh
 END
 build.xml
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/27/trunk/trunk/Client/build.xml
+/svn/!svn/ver/45/trunk/trunk/Client/build.xml
 END
 .project
 K 25
@@ -37,11 +49,11 @@ lauch_client.sh
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svn/!svn/ver/29/trunk/trunk/Client/lauch_client.sh
+/svn/!svn/ver/44/trunk/trunk/Client/lauch_client.sh
 END
 .classpath
 K 25
 svn:wc:ra_dav:version-url
-V 45
-/svn/!svn/ver/3/trunk/trunk/Client/.classpath
+V 46
+/svn/!svn/ver/45/trunk/trunk/Client/.classpath
 END

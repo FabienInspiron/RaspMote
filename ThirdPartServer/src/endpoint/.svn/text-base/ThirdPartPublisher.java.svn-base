@@ -8,7 +8,7 @@ import metier.Adress;
 
 public class ThirdPartPublisher {
 
-	public static final String IP = Adress.getIpPublic();
+	public static final String IP = "localhost"; //Adress.getIpPublic();
 	public static final String PORT = "9998";
 	public static final String PATH = "/ws/thirdpartpublisher";
 	public static final String ADRESSE = "http://" + IP + ":" + PORT + PATH;
