@@ -1,16 +1,74 @@
-<list>
-  <metier.Outlet>
-    <id>45</id>
-    <state>false</state>
-    <room>tutu</room>
-    <name>tutu</name>
-    <privileges>0</privileges>
-  </metier.Outlet>
-  <metier.Outlet>
-    <id>45</id>
-    <state>false</state>
-    <room>tutu</room>
-    <name>tutu</name>
-    <privileges>0</privileges>
-  </metier.Outlet>
-</list>
+<map>
+  <entry>
+    <int>0</int>
+    <metier.Outlet>
+      <id>0</id>
+      <state>true</state>
+      <room>Salle a manger</room>
+      <name>TV</name>
+    </metier.Outlet>
+  </entry>
+  <entry>
+    <int>1</int>
+    <metier.Outlet>
+      <id>1</id>
+      <state>true</state>
+      <room>Salle a manger</room>
+      <name>Lampe</name>
+    </metier.Outlet>
+  </entry>
+  <entry>
+    <int>2</int>
+    <metier.Outlet>
+      <id>2</id>
+      <state>true</state>
+      <room>Salle a manger</room>
+      <name>Fauteuil</name>
+    </metier.Outlet>
+  </entry>
+  <entry>
+    <int>3</int>
+    <metier.Outlet>
+      <id>3</id>
+      <state>false</state>
+      <room>Chambre 1</room>
+      <name>Lampe</name>
+    </metier.Outlet>
+  </entry>
+  <entry>
+    <int>4</int>
+    <metier.Outlet>
+      <id>4</id>
+      <state>false</state>
+      <room>Chambre 1</room>
+      <name>TV</name>
+    </metier.Outlet>
+  </entry>
+  <entry>
+    <int>5</int>
+    <metier.Outlet>
+      <id>5</id>
+      <state>false</state>
+      <room>Salle de bains</room>
+      <name>Lampe</name>
+    </metier.Outlet>
+  </entry>
+  <entry>
+    <int>6</int>
+    <metier.Outlet>
+      <id>6</id>
+      <state>false</state>
+      <room>Salle de bains</room>
+      <name>TV</name>
+    </metier.Outlet>
+  </entry>
+  <entry>
+    <int>7</int>
+    <metier.Outlet>
+      <id>7</id>
+      <state>false</state>
+      <room>Salle de bains</room>
+      <name>Chauffage</name>
+    </metier.Outlet>
+  </entry>
+</map>

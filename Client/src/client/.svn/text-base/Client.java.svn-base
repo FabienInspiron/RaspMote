@@ -34,12 +34,32 @@ public class Client {
 	// Unique User IDentifier
 	//
 	private String uuid;
+	
+	private NotificationListner listner;
+	
+	private static IThirdPartyServer serv;
+	
+	public Client() {
+		try {
+			listner = new NotificationListner(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		serv.subscribe("localhost",listner.port);
+		
+		/**
+		 * Listner on server events
+		 */
+		
+		listner.start();
+
+	}
 
 	public static void main(String[] args) {
 		 
-		IThirdPartyServer serv = null;
+		serv = null;
 		ThirdPartServerImplService thirdPart = null;
-		Client client = new Client();
 		
 		try {
 			// Server instance
@@ -53,15 +73,8 @@ public class Client {
 			return;
 		}
 		
-		
-		int port = serv.subscribe("localhost");
-		
-		/**
-		 * Listner on server events
-		 */
-		Thread d = new Thread(new NotificationListner(port, client));
-		d.start();
 
+		Client client = new Client();
 		
 //		List<Outlet> ls = serv.getListOutlet().getItem();
 //		for(Outlet o : ls) {

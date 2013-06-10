@@ -1,9 +1,12 @@
 package local;
  
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +44,21 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	
 	private int port_ecoute;
 	
+	private NotificationListner listner;
+	
 	/**
 	 * Normal constructor
 	 */
 	public ThirdPartServerImpl() {
 		list_clients =  new ArrayList<Adress>();
 		users = new ArrayList<User>();
+		
+		// Launch listner
+		try {
+			listner = new NotificationListner(this);
+		} catch(IOException e) {
+			System.err.println("Impossible de lancer le listner !!");
+		}
 		
 		/**
 		 * Get an instance of the Rapsberry Pi server
@@ -57,13 +69,12 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 		/**
 		 * Subscribe to the notification system
 		 */
-		port_ecoute = rasp.subscribe("localhost");
+		rasp.subscribe("localhost", listner.port);
+		listner.start();
 	}
 	
 	@Override
-	public int subscribe(String host) {
-		int port = getFreePort(host);
-		
+	public int subscribe(String host, int port) {
 		Adress insock = new Adress(host, port);
 		System.out.println("Nouvelle souscription de : " + insock);
 		
@@ -72,7 +83,7 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 			System.out.println("Ajout de " + insock);
 		}
 		
-		return port;
+		return 1;
 	}
 
 	/**
@@ -172,34 +183,6 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	public int getPortEcoute(){
 		return port_ecoute;
 	}
-	
-	/**
-	 * Return a free port available for the host
-	 * This méthode try to found the open port and avoid it
-	 * @param host
-	 * @return
-	 */
-	public int getFreePort(String host) {
-		int port = START_PORT;
-		
-		boolean boucle = true;
-		
-		/**
-		 * Test if a port is free
-		 */
-		while (boucle){
-			try{
-				Socket socket = new Socket(host, port);
-				boucle = true;
-				port++;
-				socket.close();
-			}catch (Exception e) { 
-				boucle = false;
-			}
-		}
-		
-		return port;
-	}
 
 	@Override
 	public void simulatePresence(int outlet, int timeMax) {
@@ -209,5 +192,10 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	@Override
 	public void stopPresenceSimulator(int outlet) {
 		rasp.stopPresenceSimulator(outlet);
+	}
+
+	@Override
+	public void switch_outlet(int idOutlet) {
+		rasp.switchOutlet(idOutlet);
 	}
 }

@@ -1,7 +1,7 @@
 cd ThirdPartServer/
+cd src
+wsimport -keep http://raspmote.no-ip.org:9999/ws/raspberry?wsdl
+cd ..
 ant clean
 ant
-cd src
-wsimport -keep http://localhost:9999/ws/raspberry?wsdl
-cd ..
 ant run

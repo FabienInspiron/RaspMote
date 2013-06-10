@@ -4,8 +4,12 @@ import interfaceGraphique.displayOutlet;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,6 +24,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import ws.Outlet;
+import ws.OutletArray;
 
 /**
  * wsimport -keep http://localhost:9999/ws/thirdpartpublisher?wsdl
@@ -34,12 +39,47 @@ public class Client {
 	// Unique User IDentifier
 	//
 	private String uuid;
+	
+	private NotificationListner listner;
+	
+	private static IThirdPartyServer serv;
+	
+	public HashMap<Integer, Outlet> list_outlet;
+	
+	public displayOutlet dispOut;
+	
+	public Client() {
+		try {
+			listner = new NotificationListner(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		serv.subscribe("localhost",listner.port);
+		
+		/**
+		 * Listner on server events
+		 */
+		
+		listner.start();
+		
+		list_outlet = new HashMap<Integer, Outlet>();
+		
+		
+		OutletArray tab = serv.getListOutlet();
+		updateList(tab.getItem());
+		
+		/**
+		 * Graphique display
+		 */
+		dispOut = new displayOutlet(this, serv);
+	}
 
 	public static void main(String[] args) {
 		 
-		IThirdPartyServer serv = null;
+		serv = null;
 		ThirdPartServerImplService thirdPart = null;
-		Client client = new Client();
 		
 		try {
 			// Server instance
@@ -52,105 +92,40 @@ public class Client {
 			System.err.println("Connection to the server failed");
 			return;
 		}
-		
-		
-		int port = serv.subscribe("localhost");
-		
-		/**
-		 * Listner on server events
-		 */
-		Thread d = new Thread(new NotificationListner(port, client));
-		d.start();
 
-		
-//		List<Outlet> ls = serv.getListOutlet().getItem();
-//		for(Outlet o : ls) {
-//			System.out.println(outletToString(o));
-//		}
-//		
-//		
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println("switch_on invoke");
-//		serv.switchOn(45);
-//		
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println("switch_on invoke");
-//		serv.switchOn(45);
-		
-//		serv.setTimer(45, 3, 1);
-//		serv.setTimer(45, 4, 1);
-//		serv.setTimer(45, 5, 1);
-//		serv.setTimer(45, 6, 1);
-//		
-//		Scanner sc = new Scanner(System.in);
-//		sc.next();
-		
-		ArrayList<Outlet> li = new ArrayList<Outlet>();
-		Outlet o1 = new Outlet();
-		o1.setId(1);
-		o1.setName("Lampe");
-		o1.setRoom("Salle à manger");
-		o1.setState(false);
-		
-		Outlet o2 = new Outlet();
-		o2.setId(1);
-		o2.setName("TV");
-		o2.setRoom("Salle à manger");
-		o2.setState(false);
-		
-		li.add(o1);
-		li.add(o2);
-		
-		new displayOutlet(o1, serv);
+		Client client = new Client();
     }
 	
-	public static String outletToString(Outlet o) {
-		return "<Outlet  id=" + o.getId() + ", state=" + o.isState() + ", room=" + o.getRoom()
-				+ ", name=" + o.getName() + ">";
-	}
-	
+	/**
+	 * Analyse a notification
+	 * @param not
+	 * @throws Exception
+	 */
 	public void analyseNotification(String not) throws Exception{
-		String ret = findAttribut(not, "<timeStampe>", "</timeStampe>");
+		
+		/**
+		 * Check time stampe
+		 */
+		String ret = Util.attribut(not, "timeStampe");
 		int val = Integer.parseInt(ret);
 		checkTimeStamp(val);
+		
+		String mode = Util.attribut(not, "type");
+		if(mode.equals("CHANGE")){
+			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			list_outlet.get(id_out).setName(Util.attribut(not, "name"));
+			list_outlet.get(id_out).setRoom(Util.attribut(not, "room"));
+			list_outlet.get(id_out).setState(Boolean.parseBoolean(Util.attribut(not, "state")));
+		}
+		
+		dispOut.dispose();
+		dispOut = new displayOutlet(this, serv);
 	}
 	
-	public static String findAttribut(String msg, String prefixe, String suffixe) throws Exception 
-    {         
-        Scanner sc = new Scanner(msg);
-         
-        while (sc.hasNextLine()) 
-        { 
-            String line = sc.nextLine(); 
-             
-            int a = line.indexOf(prefixe); 
-            if (a!=-1) 
-            { 
-                int b = line.indexOf(suffixe,a); 
-                if (b!=-1) 
-                { 
-                    sc.close(); 
-                    return line.substring(a+prefixe.length(),b); 
-                } 
-            } 
-        } 
-         
-        sc.close(); 
-        return null; 
-    } 
-	
+	/**
+	 * Check for the time stampe
+	 * @param value
+	 */
 	public void checkTimeStamp(int value){
 		if(timeStamp == 0)
 			timeStamp = value;
@@ -158,5 +133,23 @@ public class Client {
 		if(timeStamp++ != value){
 			System.out.println("Erreur, un message non reçu");
 		}
+	}
+	
+	/**
+	 * Update the entire list
+	 * @param list
+	 */
+	public void updateList(List<Outlet> list){
+		for (Outlet outlet : list) {
+			list_outlet.put(outlet.getId(), outlet);
+		}
+	}
+	
+	public HashMap<Integer, Outlet> getList(){
+		return list_outlet;
+	}
+	
+	public List<Outlet> getOutlet(){
+		return new ArrayList<Outlet>(list_outlet.values());
 	}
 }

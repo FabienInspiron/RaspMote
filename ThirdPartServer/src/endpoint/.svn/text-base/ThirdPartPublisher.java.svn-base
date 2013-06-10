@@ -1,5 +1,7 @@
 package endpoint;
 
+import java.io.IOException;
+
 import javax.xml.ws.Endpoint;
 
 import local.NotificationListner;
@@ -15,9 +17,6 @@ public class ThirdPartPublisher {
 	
 	public static void main(String[] args) {
 		ThirdPartServerImpl server = new ThirdPartServerImpl();
-		
-		Thread t = new Thread(new NotificationListner(server.getPortEcoute(), server));
-		t.start();
 		
 		Endpoint.publish(ADRESSE, server);
 		System.out.println("Service publié a l'adresse : "+ ADRESSE);

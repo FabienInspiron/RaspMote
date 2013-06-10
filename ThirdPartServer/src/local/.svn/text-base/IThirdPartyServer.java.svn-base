@@ -16,7 +16,7 @@ public interface IThirdPartyServer{
 	 * @param host is you
 	 * @return
 	 */
-	@WebMethod int subscribe(String host);
+	@WebMethod int subscribe(String host, int port);
 	
 	/**
 	 * Switch the light on

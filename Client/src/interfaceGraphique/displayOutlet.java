@@ -1,23 +1,22 @@
 package interfaceGraphique;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListCellRenderer;
-import javax.swing.border.Border;
 
 import local.IThirdPartyServer;
 import ws.Outlet;
+import client.Client;
 
 public class displayOutlet extends JFrame {
 
@@ -31,119 +30,126 @@ public class displayOutlet extends JFrame {
 	private JButton off = new JButton("off");
 	private JButton timer = new JButton("timer");
 	private JButton presence = new JButton("presence");
-	private JCheckBox check = new JCheckBox();
 
 	JPanel contener = new JPanel();
 	JPanel outletPan = new JPanel();
 	JPanel gauche = new JPanel();
 	
-	private ActionListenerInscription alc = new ActionListenerInscription();
+	Client c;
+	IThirdPartyServer serv;
+	
 
-	public displayOutlet(Outlet outlet, IThirdPartyServer serv) {
-		super("Outlets");
+	public displayOutlet(Client c, final IThirdPartyServer serv) {
+		super("Liste");
 
+		this.c = c;
+		this.serv = serv;
+		
 		server = serv;
-		this.setSize(500, 700);
-		getContentPane().setLayout(new FlowLayout());
+		this.setSize(500, 750);
+		getContentPane().setLayout(new BorderLayout());
+
+		maj_outlets();
 		
-		contener.setLayout(new BorderLayout());
-
-		id.setFont(new Font("Helvetica", Font.PLAIN, 20));
-		room.setFont(new Font("Helvetica", Font.ITALIC, 20));
-		name.setFont(new Font("Helvetica", Font.PLAIN, 20));
-
-		id.setText("" + outlet.getId());
-		room.setText(outlet.getRoom());
-		name.setText(outlet.getName());
-
-		gauche.add(id);
-		gauche.add(room);
-		gauche.add(name);
-		
-		contener.add(gauche, BorderLayout.WEST);
-		
-		on.addActionListener(alc);
-		outletPan.add(on);
-		
-		off.addActionListener(alc);
-		outletPan.add(off);
-
-		timer.addActionListener(alc);
-		outletPan.add(timer);
-
-		presence.addActionListener(alc);
-		outletPan.add(presence);
-
-		contener.add(outletPan, BorderLayout.CENTER);
-
 		this.add(contener);
-
-		this.setLocationRelativeTo(null);
+		// this.setLocationRelativeTo(null);
+		this.setLocation(900, 100);
 		this.setVisible(true);
 	}
 
-	private void init() {
-		Outlet o1 = new Outlet();
-		o1.setId(1);
-		o1.setName("Lampe");
-		o1.setRoom("Salle à manger");
-		o1.setState(false);
+	public void maj_outlets() {
+		contener = new  JPanel();
+		
+		contener.setLayout(new BoxLayout(contener, BoxLayout.Y_AXIS));
+		
+		JScrollPane scroller = new JScrollPane(contener);
+		this.getContentPane().add(scroller);
+		
+		for (Outlet outlet : c.getOutlet()) {
 
-		Outlet o2 = new Outlet();
-		o2.setId(1);
-		o2.setName("TV");
-		o2.setRoom("Salle à manger");
-		o2.setState(false);
+			JPanel pannelOutlet = new JPanel(new BorderLayout());
+			JPanel buttons = new JPanel();
 
-		Object elements[][] = { { o1.getName(), o1.getRoom() },
-				{ o2.getName(), o2.getRoom() }, { o2.getName(), o2.getRoom() } };
+			id = new JLabel("" + outlet.getId());
+			id.setFont(new Font("sansserif", Font.ROMAN_BASELINE, 30));
 
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			room = new JLabel(outlet.getName());
+			room.setFont(new Font("sansserif", Font.PLAIN, 30));
 
-		JList jlist = new JList(elements);
-		ListCellRenderer renderer = new ComplexCellRenderer();
-		jlist.setCellRenderer(renderer);
-		JScrollPane scrollPane = new JScrollPane(jlist);
-		this.add(scrollPane, BorderLayout.CENTER);
+			name = new JLabel(outlet.getRoom() + " - " + outlet.getName());
+			name.setFont(new Font("sansserif", Font.ITALIC, 30));
 
-		this.setSize(300, 200);
-		this.setVisible(true);
-	}
+			on = new JButton("on");
+			on.setActionCommand("" + outlet.getId());
+			on.setFont(new Font("sansserif", Font.BOLD, 20));
 
-	private class ActionListenerInscription implements ActionListener {
-		public void actionPerformed(ActionEvent event) {
-			Object obj = event.getSource();
-
-			if (on.equals(obj)) {
-				server.switchOn(12);
-			}
+			presence = new JButton("Presence");
+			presence.setActionCommand("" + outlet.getId());
+			presence.setFont(new Font("sansserif", Font.BOLD, 20));
 			
-			if (off.equals(obj)) {
-				server.switchOff(12);
-			}
+			off = new JButton("off");
+			off.setFont(new Font("sansserif", Font.BOLD, 20));
+			off.setActionCommand("" + outlet.getId());
 
-			if (presence.equals(obj)) {
-				server.simulatePresence(45, 4);
-			}
+			off.setBackground(Color.WHITE);
+			on.setBackground(Color.WHITE);
+
+			if (outlet.isState())
+				on.setBackground(Color.gray);
+			else
+				off.setBackground(Color.gray);
+
+			pannelOutlet.add(id, BorderLayout.WEST);
+			//pannelOutlet.add(room, BorderLayout.SOUTH);
+			pannelOutlet.add(name, BorderLayout.NORTH);
+
+			buttons.add(on);
+			buttons.add(off);
+			buttons.add(presence);
+
+			pannelOutlet.add(buttons, BorderLayout.CENTER);
+			on.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					JButton but = (JButton) arg0.getSource();
+					String pan = but.getActionCommand();
+					System.out.println("on press" + pan);
+					int id_outlet = Integer.parseInt(pan);
+					serv.switchOn(id_outlet);
+				}
+			});
+
+			off.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JButton but = (JButton) e.getSource();
+					String pan = but.getActionCommand();
+					System.out.println("off press" + pan);
+					int id_outlet = Integer.parseInt(pan);
+					serv.switchOff(id_outlet);
+				}
+			});
+
+			presence.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					JButton but = (JButton) arg0.getSource();
+					String pan = but.getActionCommand();
+					System.out.println("presence press" + pan);
+					int id_outlet = Integer.parseInt(pan);
+					serv.simulatePresence(id_outlet, 3600);
+				}
+			});
 			
-			if (timer.equals(obj)) {
-				server.stopPresenceSimulator(45);
-			}
-
-			// //Si on a cliqué sur le bouton inscription
-			// if(inscription.equals(obj)){
-			// //Créer le ClientTweet
-			//
-			// //Ajouter le client à la BD
-			// if(mdp1Field.getText() == mdp2Field.getText()){
-			// nomField.getText();
-			// prenomField.getText();
-			// loginField.getText();
-			// }
-			//
-			// //Ouvrir son compte
-			// dispose();
-			// }
+			contener.add(pannelOutlet);
 		}
+	}
+	
+	@Override
+	public void repaint() {
+		maj_outlets();
 	}
 }

@@ -32,4 +32,16 @@ public class RaspberryPiAdminServerImpl implements IRaspberryPiAdmin{
 	public void remove_outlet(int id) {
 		dataManager.removeOutlet(id);
 	}
+
+	@Override
+	@WebMethod
+	public Outlet get_outlet(int id) {
+		return dataManager.getOutlet(id);
+	}
+
+	@Override
+	@WebMethod
+	public void update_outlet(int id, String name, String room, boolean state) {
+		dataManager.updateOutlet(id, name, room, state);
+	}
 }

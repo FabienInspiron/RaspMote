@@ -25,6 +25,7 @@ public interface IRaspberryPi {
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
      *     returns int
@@ -33,7 +34,9 @@ public interface IRaspberryPi {
     @WebResult(partName = "return")
     public int subscribe(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        int arg1);
 
     /**
      * 
@@ -104,6 +107,15 @@ public interface IRaspberryPi {
      */
     @WebMethod
     public void stopPresenceSimulator(
+        @WebParam(name = "arg0", partName = "arg0")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    public void switchOutlet(
         @WebParam(name = "arg0", partName = "arg0")
         int arg0);
 

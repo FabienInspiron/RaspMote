@@ -7,11 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import ws.IRaspberryPi;
@@ -58,6 +56,8 @@ public class DataManager {
 		list_timer = new HashMap<Integer, TimerLauch>();
 		list_presence_simulator = new HashMap<Integer, ThreadPresenceSimulator>();
 		
+		loadOutlet();
+		
 		LastId = 0;
 	}
 
@@ -73,11 +73,13 @@ public class DataManager {
 	 * Get outlets from xml file
 	 */
 	private void loadOutlet(){
+		System.out.println("chargement");
 		try {
 			XStream xstream = new XStream(new DomDriver());
 			FileInputStream fis = new FileInputStream(file_outlet);
 			list_outlet = (HashMap<Integer, Outlet>) xstream.fromXML(fis);
 		} catch (Exception e) {
+			System.out.println("erreur chargemenr");
 			list_outlet = new HashMap<Integer, Outlet>();
 		} 
 	}
@@ -86,6 +88,7 @@ public class DataManager {
 	 * Serialize outlets list
 	 */
 	public void storeOutlet(){
+		System.out.println("save");
 		try {
 			XStream xstream = new XStream(new DomDriver());
 			FileOutputStream fos = new FileOutputStream(file_outlet);
@@ -117,6 +120,15 @@ public class DataManager {
 	}
 	
 	/**
+	 * Get an outlet
+	 * @param id
+	 * @return
+	 */
+	public Outlet getOutlet(int id) {
+		return list_outlet.get(id);
+	}
+	
+	/**
 	 * Add an outlet
 	 * @param outl
 	 */
@@ -124,10 +136,26 @@ public class DataManager {
 		outl.id = LastId;
 		LastId++;
 		list_outlet.put(new Integer(outl.id), outl);
-		//storeOutlet();
+		storeOutlet();
 		
 		notifyAllClients(Messages.addOutlet(outl));
 		return outl.id;
+	}
+	
+	/**
+	 * Update an outlet
+	 * @param id
+	 * @param name
+	 * @param room
+	 * @param state
+	 */
+	public void updateOutlet(int id, String name, String room, boolean state) {
+		Outlet o = getOutlet(id);
+		o.name = name;
+		o.room = room;
+		o.state = state;
+		
+		storeOutlet();
 	}
 	
 	/**
@@ -183,11 +211,13 @@ public class DataManager {
 	 * @param id_outlet
 	 */
 	public void switch_on(int id_outlet) {
-		System.out.println("switch_on");
+		System.out.println("switch_on " + id_outlet);
 		
-		Outlet o = list_outlet.get(id_outlet);
-		if(o != null)
+		Outlet o = list_outlet.get(new Integer(id_outlet));
+		
+		if(o != null){
 			o.switch_on();
+		}
 		
 		notifyAllClients(Messages.outletChange(o));
 	}
@@ -197,16 +227,16 @@ public class DataManager {
 	 * @param id_outlet
 	 */
 	public void switch_off(int id_outlet) {
-		System.out.println("switch_off");
+		System.out.println("switch_off" + id_outlet);
 		
 		Outlet o = list_outlet.get(id_outlet);
 		if(o != null)
-			o.switch_on();
+			o.switch_off();
 		
 		notifyAllClients(Messages.outletChange(o));
 	}
 	/**
-	 * Notify to all the client in list_clients
+	 * Notify all clients in list_clients
 	 * @param notify
 	 */
 	private void notifyAllClients(String msg) {
@@ -227,7 +257,7 @@ public class DataManager {
 		                             true);
 
 		        /**
-		         * Delete all the cariage return because the are used to
+		         * Delete all the carriage return because the are used to
 		         * put the end of a socket.
 		         */
 		        msg = msg.trim();
@@ -241,37 +271,10 @@ public class DataManager {
 		        pred.close();
 		        
 		        socket.close();
+		        
+		        storeOutlet();
 	        }catch(Exception e){e.printStackTrace();}
 		}
-	}
-	
-	/**
-	 * Return a free port available for the host
-	 * This méthode try to found the open port and avoid it
-	 * @param host
-	 * @return
-	 */
-	public int getFreePort(String host) {
-		int port = START_PORT;
-		
-		boolean boucle = true;
-		
-		/**
-		 * Test if a port is free
-		 */
-		while (boucle){
-			try{
-				Socket socket = new Socket(host, port);
-				boucle = true;
-				port++;
-				socket.close();
-			}catch (Exception e) { 
-				boucle = false;
-			}
-		}
-		
-		System.out.println("free port found : " + port);
-		return port;
 	}
 	
 	/**
@@ -313,5 +316,22 @@ public class DataManager {
 		t.interrupted();
 		
 		list_timer.remove(new Integer(numOutlet));
+	}
+	
+	public void afficherListe(){
+		List<Outlet> l = getListOutlet();
+		for (Outlet o : l) {
+			System.out.println(o);
+		}
+	}
+	
+	public void switchOutlet(int idOutlet){
+		Outlet o = list_outlet.get(new Integer(idOutlet));
+		
+		if(o != null){
+			o.switch_outlet();
+		}
+		
+		notifyAllClients(Messages.outletChange(o));
 	}
 }

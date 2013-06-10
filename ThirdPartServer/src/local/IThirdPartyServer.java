@@ -16,7 +16,7 @@ public interface IThirdPartyServer{
 	 * @param host is you
 	 * @return
 	 */
-	@WebMethod int subscribe(String host);
+	@WebMethod int subscribe(String host, int port);
 	
 	/**
 	 * Switch the light on
@@ -61,4 +61,5 @@ public interface IThirdPartyServer{
 	
 	@WebMethod void stopPresenceSimulator(int outlet);
 	
+	@WebMethod void switch_outlet(int idOutlet);
 }

@@ -4,22 +4,19 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
-
-public class NotificationListner implements Runnable {
+public class NotificationListner extends Thread {
 	
-	int port;
 	Client client;
+	int port;
+	ServerSocket listener;
 	
-	public NotificationListner(int port, Client c) {
-		this.port = port;
-		client = c;
+	public NotificationListner(Client client) throws IOException {
+		this.client = client;
+		listener = new ServerSocket(0);
+		port = listener.getLocalPort();
 	}
 
 	/**
@@ -28,10 +25,7 @@ public class NotificationListner implements Runnable {
 	@Override
 	public void run() {
 		int num = 0;
-		
-		ServerSocket listener = null;
         	try {
-				listener = new ServerSocket(port);
 				while (true) {
 					Socket socket = listener.accept();
 					

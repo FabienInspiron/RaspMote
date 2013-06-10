@@ -1,12 +1,9 @@
 package ws;
 
-import java.net.InetSocketAddress;
-
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
-import javax.xml.bind.JAXBElement;
 
 import metier.Outlet;
 
@@ -19,7 +16,7 @@ public interface IRaspberryPi {
 	 * @param host of the client
 	 * @return
 	 */
-	@WebMethod int subscribe(String host);
+	@WebMethod int subscribe(String host, int port);
 	
 	/**
 	 * Switch the light on
@@ -48,6 +45,8 @@ public interface IRaspberryPi {
 	@WebMethod void setPresenceSimulator(int idOutlet, int timeMax);
 	
 	@WebMethod void stopPresenceSimulator(int idOutlet);
+	
+	@WebMethod void switchOutlet(int idOutlet);
 	
 	/**
 	 * Return the list of the outlet

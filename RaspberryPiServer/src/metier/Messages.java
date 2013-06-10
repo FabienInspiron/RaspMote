@@ -33,7 +33,7 @@ public class Messages {
 	 * @return
 	 */
 	public static String removeOutlet(Outlet out){
-		MessageSend ms = new MessageSend("ADD", out,time++);
+		MessageSend ms = new MessageSend("DEL", out, time++);
 		return xstream.toXML(ms);
 	}
 	

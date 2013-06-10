@@ -1,15 +1,15 @@
 10
 
 dir
-46
+51
 https://raspmote.googlecode.com/svn/trunk/trunk/RaspberryPiServer
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-09T20:36:18.779288Z
-46
-belli.fabien@gmail.com
+2013-06-10T13:05:57.690857Z
+51
+cyril.gorrieri@gmail.com
 
 
 svn:special svn:externals svn:needs-lock

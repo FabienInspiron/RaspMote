@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/svn/!svn/ver/45/trunk/trunk/Client/src/ws
+/svn/!svn/ver/51/trunk/trunk/Client/src/ws
 END
 Outlet.java
 K 25
@@ -19,7 +19,7 @@ ObjectFactory.class
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/svn/!svn/ver/45/trunk/trunk/Client/src/ws/ObjectFactory.class
+/svn/!svn/ver/51/trunk/trunk/Client/src/ws/ObjectFactory.class
 END
 ObjectFactory.java
 K 25
@@ -31,13 +31,13 @@ OutletArray.class
 K 25
 svn:wc:ra_dav:version-url
 V 60
-/svn/!svn/ver/35/trunk/trunk/Client/src/ws/OutletArray.class
+/svn/!svn/ver/51/trunk/trunk/Client/src/ws/OutletArray.class
 END
 Outlet.class
 K 25
 svn:wc:ra_dav:version-url
 V 55
-/svn/!svn/ver/35/trunk/trunk/Client/src/ws/Outlet.class
+/svn/!svn/ver/51/trunk/trunk/Client/src/ws/Outlet.class
 END
 package-info.java
 K 25
@@ -49,5 +49,5 @@ package-info.class
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/svn/!svn/ver/35/trunk/trunk/Client/src/ws/package-info.class
+/svn/!svn/ver/51/trunk/trunk/Client/src/ws/package-info.class
 END

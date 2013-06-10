@@ -12,14 +12,16 @@ import java.net.Socket;
  * @author belli
  *
  */
-public class NotificationListner implements Runnable {
+public class NotificationListner extends Thread {
 	
 	int port;
 	ThirdPartServerImpl third;
+	ServerSocket listener;
 	
-	public NotificationListner(int port, ThirdPartServerImpl third) {
-		this.port = port;
+	public NotificationListner(ThirdPartServerImpl third) throws IOException {
 		this.third = third;
+		listener = new ServerSocket(0);
+		port = listener.getLocalPort();
 	}
 
 	/**
@@ -27,9 +29,7 @@ public class NotificationListner implements Runnable {
 	 */
 	@Override
 	public void run() {
-		ServerSocket listener = null;
         try {
-        	listener = new ServerSocket(port);
             while (true) {
                 Socket socket = listener.accept();
                 try {

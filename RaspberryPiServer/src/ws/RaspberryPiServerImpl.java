@@ -26,14 +26,14 @@ public class RaspberryPiServerImpl implements IRaspberryPi{
 	 * return the port to listen
 	 */
 	@Override
-	public int subscribe(String host) {
-		int port = dataManager.getFreePort(host);
+	public int subscribe(String host, int port) {
 		
 		//InetSocketAddress insock = new InetSocketAddress(host, port);
 		Adress add = new Adress(host, port);
 		
 		dataManager.addServer(add);
-		return port;
+		System.out.println("subscribtion de "+host+":"+port);
+		return 1;
 	}
 
 	@Override
@@ -70,5 +70,10 @@ public class RaspberryPiServerImpl implements IRaspberryPi{
 	@Override
 	public void stopPresenceSimulator(int idOutlet) {
 		dataManager.stopSimulatePresence(idOutlet);	
+	}
+
+	@Override
+	public void switchOutlet(int idOutlet) {
+		dataManager.switchOutlet(idOutlet);		
 	}
 }

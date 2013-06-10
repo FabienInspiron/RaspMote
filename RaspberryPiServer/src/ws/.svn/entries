@@ -1,15 +1,15 @@
 10
 
 dir
-46
+51
 https://raspmote.googlecode.com/svn/trunk/trunk/RaspberryPiServer/src/ws
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-09T20:36:18.779288Z
-46
-belli.fabien@gmail.com
+2013-06-10T13:05:57.690857Z
+51
+cyril.gorrieri@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -39,11 +39,11 @@ file
 
 
 
-2013-06-09T20:30:07.000000Z
-88ee010371083bcdfe38ef378ea3f32c
-2013-06-09T20:36:18.779288Z
-46
-belli.fabien@gmail.com
+2013-06-10T13:19:12.000000Z
+d6b67107410a7fa73ec1629473019c65
+2013-06-10T13:05:57.690857Z
+51
+cyril.gorrieri@gmail.com
 has-props
 
 
@@ -65,7 +65,7 @@ has-props
 
 
 
-1292
+1231
 
 IRaspberryPiAdmin.java
 file
@@ -73,10 +73,10 @@ file
 
 
 
-2013-06-07T12:50:36.000000Z
-af6bd85c4c43b235d25a29956ef3ab25
-2013-06-07T11:25:28.948671Z
-31
+2013-06-10T13:19:12.000000Z
+0890ef4cc95910eeae3225fe10e52923
+2013-06-10T09:13:44.896802Z
+49
 cyril.gorrieri@gmail.com
 has-props
 
@@ -99,7 +99,7 @@ has-props
 
 
 
-494
+641
 
 RaspberryPiAdminServerImpl.java
 file
@@ -107,10 +107,10 @@ file
 
 
 
-2013-06-07T12:50:36.000000Z
-88c0a2afe3c2885abc0fb5d967a8d2f7
-2013-06-07T11:25:28.948671Z
-31
+2013-06-10T13:19:12.000000Z
+d6b70d947cb5b32215b053c926c912c4
+2013-06-10T09:13:44.896802Z
+49
 cyril.gorrieri@gmail.com
 has-props
 
@@ -133,7 +133,7 @@ has-props
 
 
 
-665
+920
 
 RaspberryPiServerImpl.java
 file
@@ -141,11 +141,11 @@ file
 
 
 
-2013-06-09T20:32:44.000000Z
-a30aad8e91886f20f2d8a06328d20f3d
-2013-06-09T20:36:18.779288Z
-46
-belli.fabien@gmail.com
+2013-06-10T13:19:12.000000Z
+058a0417db6c2f738b1f1185d319e6ae
+2013-06-10T13:05:57.690857Z
+51
+cyril.gorrieri@gmail.com
 has-props
 
 
@@ -167,5 +167,5 @@ has-props
 
 
 
-1656
+1675
 
