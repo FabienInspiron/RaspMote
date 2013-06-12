@@ -1,15 +1,15 @@
 10
 
 dir
-51
+55
 https://raspmote.googlecode.com/svn/trunk/trunk/Client/src/local
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-10T13:05:57.690857Z
-51
-cyril.gorrieri@gmail.com
+2013-06-11T15:43:02.370197Z
+52
+belli.fabien@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -35,11 +35,11 @@ b35a5cc3-cdc2-6e81-269e-00ee3418f330
 
 IThirdPartyServer.class
 file
-52
 
 
 
-2013-06-11T15:12:32.000000Z
+
+2013-06-12T07:10:00.000000Z
 e5d34eb396f1f764253121ed19189bd5
 2013-06-11T15:43:02.370197Z
 52
@@ -69,11 +69,11 @@ has-props
 
 IThirdPartyServer.java
 file
-52
 
 
 
-2013-06-11T15:12:32.000000Z
+
+2013-06-12T07:10:00.000000Z
 67dd0b63297335f255f84e2517a8449a
 2013-06-11T15:43:02.370197Z
 52
@@ -103,11 +103,11 @@ has-props
 
 ThirdPartServerImplService.class
 file
-52
 
 
 
-2013-06-11T15:12:32.000000Z
+
+2013-06-12T07:10:00.000000Z
 a460599f49581b05afc2b8ace06738c9
 2013-06-11T15:43:02.370197Z
 52
@@ -137,11 +137,11 @@ has-props
 
 ThirdPartServerImplService.java
 file
-52
 
 
 
-2013-06-11T15:12:32.000000Z
+
+2013-06-12T07:10:00.000000Z
 92b711e8d576e80b72d29af174bcd3e2
 2013-06-11T15:43:02.370197Z
 52

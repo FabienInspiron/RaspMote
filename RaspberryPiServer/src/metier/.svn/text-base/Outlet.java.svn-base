@@ -78,4 +78,13 @@ public class Outlet {
 		return "Outlet [id=" + o.id + ", state=" + o.state + ", room=" + o.room
 				+ ", name=" + o.name + "]";
 	}
+	
+	@Override
+	public String toString() {
+		return "Outlet " + id + " : name = " +name + " room = " + room + " state = " + state;
+	}
+	
+	public void switch_outlet() {
+		state = !state;
+	}
 }

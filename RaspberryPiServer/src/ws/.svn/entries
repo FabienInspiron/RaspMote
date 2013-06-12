@@ -1,15 +1,15 @@
 10
 
 dir
-51
+55
 https://raspmote.googlecode.com/svn/trunk/trunk/RaspberryPiServer/src/ws
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-10T13:05:57.690857Z
-51
-cyril.gorrieri@gmail.com
+2013-06-12T07:15:10.948786Z
+53
+belli.fabien@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -39,11 +39,11 @@ file
 
 
 
-2013-06-10T13:19:12.000000Z
-d6b67107410a7fa73ec1629473019c65
-2013-06-10T13:05:57.690857Z
-51
-cyril.gorrieri@gmail.com
+2013-06-11T14:53:50.000000Z
+39c8210e36fab0910b62f8a60e309001
+2013-06-12T07:15:10.948786Z
+53
+belli.fabien@gmail.com
 has-props
 
 
@@ -65,7 +65,7 @@ has-props
 
 
 
-1231
+1603
 
 IRaspberryPiAdmin.java
 file
@@ -141,11 +141,11 @@ file
 
 
 
-2013-06-10T13:19:12.000000Z
-058a0417db6c2f738b1f1185d319e6ae
-2013-06-10T13:05:57.690857Z
-51
-cyril.gorrieri@gmail.com
+2013-06-11T14:52:17.000000Z
+cfc6033a5d5675f1cd6a8d5e59f0661f
+2013-06-12T07:15:10.948786Z
+53
+belli.fabien@gmail.com
 has-props
 
 
@@ -167,5 +167,5 @@ has-props
 
 
 
-1675
+2263
 

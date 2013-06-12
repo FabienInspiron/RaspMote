@@ -4,9 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +12,7 @@ import javax.jws.WebService;
 
 import metier.Adress;
 import metier.User;
-
+import net.java.dev.jaxb.array.IntArray;
 import ws.IRaspberryPi;
 import ws.OutletArray;
 import ws.RaspberryPiServerImplService;
@@ -76,7 +74,6 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	@Override
 	public int subscribe(String host, int port) {
 		Adress insock = new Adress(host, port);
-		System.out.println("Nouvelle souscription de : " + insock);
 		
 		if(!list_clients.contains(insock)){
 			list_clients.add(insock);
@@ -92,6 +89,8 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	 */
 	public void notifyAllClients(String msg) {
 		if(msg == null) return;
+		
+		System.out.println("Notification...");
 		
 		// Temporare list
 		List<Adress> list_client_tmp = new ArrayList<Adress>(list_clients);
@@ -192,5 +191,36 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	@Override
 	public void stopPresenceSimulator(int outlet) {
 		rasp.stopPresenceSimulator(outlet);
+	}
+
+	@Override
+	public void switch_outlet(int idOutlet) {
+		rasp.switchOutlet(idOutlet);
+	}
+
+	@Override
+	public float getTimer(int idOutlet) {
+		rasp.getTimer(idOutlet);
+		return 0;
+	}
+
+	@Override
+	public boolean isPresence(int idOutlet) {
+		return rasp.isPresence(idOutlet);
+	}
+
+	@Override
+	public void stopTimer(int id_outlet) {
+		rasp.stopTimer(id_outlet);
+	}
+
+	@Override
+	public IntArray getListTimer() {
+		return rasp.getListTimer();
+	}
+
+	@Override
+	public IntArray getListPresence() {
+		return rasp.getListPresence();
 	}
 }

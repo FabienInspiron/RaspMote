@@ -1,15 +1,15 @@
 10
 
 dir
-51
+55
 https://raspmote.googlecode.com/svn/trunk/trunk/ThirdPartServer/src/local
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-10T13:05:57.690857Z
-51
-cyril.gorrieri@gmail.com
+2013-06-12T07:29:02.775963Z
+54
+belli.fabien@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -39,11 +39,11 @@ file
 
 
 
-2013-06-10T13:20:39.000000Z
-0c48cf0fb512fb390a2df6b985ef7b5d
-2013-06-10T13:05:57.690857Z
-51
-cyril.gorrieri@gmail.com
+2013-06-11T15:02:46.000000Z
+3f8f33cca132de6a21cf5ac158f269a1
+2013-06-12T07:29:02.775963Z
+54
+belli.fabien@gmail.com
 has-props
 
 
@@ -65,7 +65,7 @@ has-props
 
 
 
-1271
+1600
 
 NotificationListner.java
 file
@@ -107,11 +107,11 @@ file
 
 
 
-2013-06-10T13:20:39.000000Z
-8c40e5b4e07b1cc8731241d90ff00ecf
-2013-06-10T13:05:57.690857Z
-51
-cyril.gorrieri@gmail.com
+2013-06-11T15:03:12.000000Z
+bf6b4e52f30c66e048f014ae09649beb
+2013-06-12T07:29:02.775963Z
+54
+belli.fabien@gmail.com
 has-props
 
 
@@ -133,5 +133,5 @@ has-props
 
 
 
-4209
+4689
 

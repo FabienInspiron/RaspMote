@@ -37,7 +37,7 @@ public class DataManager {
 	/**
 	 * List timer
 	 */
-	HashMap<Integer, TimerLauch> list_timer;
+	HashMap<Integer, Thread> list_timer;
 	
 	
 	/**
@@ -53,8 +53,10 @@ public class DataManager {
 	private DataManager() {
 		list_server = new ArrayList<Adress>();
 		list_outlet = new HashMap<Integer, Outlet>();
-		list_timer = new HashMap<Integer, TimerLauch>();
+		list_timer = new HashMap<Integer, Thread>();
 		list_presence_simulator = new HashMap<Integer, ThreadPresenceSimulator>();
+		
+		loadOutlet();
 		
 		LastId = 0;
 	}
@@ -71,11 +73,13 @@ public class DataManager {
 	 * Get outlets from xml file
 	 */
 	private void loadOutlet(){
+		System.out.println("chargement");
 		try {
 			XStream xstream = new XStream(new DomDriver());
 			FileInputStream fis = new FileInputStream(file_outlet);
 			list_outlet = (HashMap<Integer, Outlet>) xstream.fromXML(fis);
 		} catch (Exception e) {
+			System.out.println("erreur chargemenr");
 			list_outlet = new HashMap<Integer, Outlet>();
 		} 
 	}
@@ -84,6 +88,7 @@ public class DataManager {
 	 * Serialize outlets list
 	 */
 	public void storeOutlet(){
+		System.out.println("save");
 		try {
 			XStream xstream = new XStream(new DomDriver());
 			FileOutputStream fos = new FileOutputStream(file_outlet);
@@ -131,7 +136,7 @@ public class DataManager {
 		outl.id = LastId;
 		LastId++;
 		list_outlet.put(new Integer(outl.id), outl);
-		//storeOutlet();
+		storeOutlet();
 		
 		notifyAllClients(Messages.addOutlet(outl));
 		return outl.id;
@@ -149,6 +154,8 @@ public class DataManager {
 		o.name = name;
 		o.room = room;
 		o.state = state;
+		
+		storeOutlet();
 	}
 	
 	/**
@@ -196,7 +203,9 @@ public class DataManager {
 		Thread t = new Thread(lauch);
 		t.start();
 		
-		list_timer.put(new Integer(id_outlet), lauch);
+		list_timer.put(new Integer(id_outlet), t);
+		
+		notifyAllClients(Messages.outletTimer(list_outlet.get(id_outlet), lauch.getTime()));
 	}
 	
 	/**
@@ -204,11 +213,13 @@ public class DataManager {
 	 * @param id_outlet
 	 */
 	public void switch_on(int id_outlet) {
-		System.out.println("switch_on");
+		System.out.println("switch_on " + id_outlet);
 		
-		Outlet o = list_outlet.get(id_outlet);
-		if(o != null)
+		Outlet o = list_outlet.get(new Integer(id_outlet));
+		
+		if(o != null){
 			o.switch_on();
+		}
 		
 		notifyAllClients(Messages.outletChange(o));
 	}
@@ -218,11 +229,11 @@ public class DataManager {
 	 * @param id_outlet
 	 */
 	public void switch_off(int id_outlet) {
-		System.out.println("switch_off");
+		System.out.println("switch_off" + id_outlet);
 		
 		Outlet o = list_outlet.get(id_outlet);
 		if(o != null)
-			o.switch_on();
+			o.switch_off();
 		
 		notifyAllClients(Messages.outletChange(o));
 	}
@@ -233,6 +244,8 @@ public class DataManager {
 	private void notifyAllClients(String msg) {
 		if(msg == null)
 			return;
+		
+		System.out.println("Notification...");
 		
 		// Temporare list
 		List<Adress> list_client_tmp = new ArrayList<Adress>(list_server);
@@ -262,6 +275,8 @@ public class DataManager {
 		        pred.close();
 		        
 		        socket.close();
+		        
+		        storeOutlet();
 	        }catch(Exception e){e.printStackTrace();}
 		}
 	}
@@ -278,6 +293,8 @@ public class DataManager {
 		
 		Thread t = new Thread(presence);
 		t.start();
+		
+		notifyAllClients(Messages.outletPresence(list_outlet.get(numOutlet)));
 	}
 	
 	/**
@@ -293,6 +310,8 @@ public class DataManager {
 			// Del frome the list
 			list_presence_simulator.remove(new Integer(numOutlet));
 		}
+		
+		notifyAllClients(Messages.outletSTOPPresence(list_outlet.get(numOutlet)));
 	}
 	
 	/**
@@ -300,10 +319,51 @@ public class DataManager {
 	 * @param numOutlet
 	 */
 	public void stopTimer(int numOutlet){
-		TimerLauch timerlauch = list_timer.get(new Integer(numOutlet));
-		Thread t = new Thread(timerlauch);
-		t.interrupted();
+		Thread t = list_timer.get(new Integer(numOutlet));
+		t.stop();
 		
 		list_timer.remove(new Integer(numOutlet));
+		
+		notifyAllClients(Messages.outletSTOPTimer(list_outlet.get(numOutlet)));
+	}
+	
+	public void afficherListe(){
+		List<Outlet> l = getListOutlet();
+		for (Outlet o : l) {
+			System.out.println(o);
+		}
+	}
+	
+	public void switchOutlet(int idOutlet){
+		System.out.println("switch");
+		Outlet o = list_outlet.get(new Integer(idOutlet));
+		
+		if(o != null){
+			o.switch_outlet();
+		}
+		
+		notifyAllClients(Messages.outletChange(o));
+	}
+	
+	public float getTimer(int idOutlet) {
+		Thread t = list_timer.get(new Integer(idOutlet));
+		System.out.println("get timer");
+		
+		if (t != null)
+			return 0;
+		else
+			return 0;
+	}
+	
+	public boolean isPresence(int idOutlet) {
+		return list_presence_simulator.containsKey(idOutlet);
+	}
+	
+	public Integer[] getListTimer(){
+		return (Integer[]) list_timer.keySet().toArray();
+	}
+	
+	public Integer[] getListPresence(){
+		return (Integer[]) list_presence_simulator.keySet().toArray();
 	}
 }

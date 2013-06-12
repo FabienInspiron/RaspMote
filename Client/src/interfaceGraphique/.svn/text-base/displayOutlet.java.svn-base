@@ -216,7 +216,12 @@ public class displayOutlet extends JFrame {
 					String pan = but.getActionCommand();
 					System.out.println("timer press" + pan);
 					int id_outlet = Integer.parseInt(pan);
-					serv.setTimer(id_outlet, 10, 0);
+					
+					 /* Create and display the form */
+			        timerSet t = new timerSet();
+			        t.setVisible(true);
+			        
+			        System.out.println(t.getTime());
 				}
 			});
 			

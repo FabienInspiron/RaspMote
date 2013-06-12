@@ -19,8 +19,8 @@ import net.java.dev.jaxb.array.IntArray;
 @WebService(name = "IRaspberryPi", targetNamespace = "http://ws/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    ws.ObjectFactory.class,
-    net.java.dev.jaxb.array.ObjectFactory.class
+    net.java.dev.jaxb.array.ObjectFactory.class,
+    ws.ObjectFactory.class
 })
 public interface IRaspberryPi {
 

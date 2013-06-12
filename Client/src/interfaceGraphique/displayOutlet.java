@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -22,8 +23,6 @@ import ws.Outlet;
 import client.Client;
 
 public class displayOutlet extends JFrame {
-
-	private IThirdPartyServer server;
 
 	private JLabel id = new JLabel();
 	private JLabel room = new JLabel();
@@ -59,25 +58,25 @@ public class displayOutlet extends JFrame {
 		this.c = c;
 		this.serv = serv;
 		
-		server = serv;
+		this.serv = serv;
 		this.setSize(500, 750);
 		getContentPane().setLayout(new BorderLayout());
+		
+		contener = new  JPanel();
+		contener.setLayout(new BoxLayout(contener, BoxLayout.Y_AXIS));
+		JScrollPane scroller = new JScrollPane(contener);
+		this.getContentPane().add(scroller);
 
 		maj_outlets();
 		
 		this.add(contener);
-		// this.setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null);
 		this.setLocation(900, 100);
 		this.setVisible(true);
 	}
 
-	public void maj_outlets() {
-		contener = new  JPanel();
-		
-		contener.setLayout(new BoxLayout(contener, BoxLayout.Y_AXIS));
-		
-		JScrollPane scroller = new JScrollPane(contener);
-		this.getContentPane().add(scroller);
+	public void maj_outlets() {	
+		contener.removeAll();
 		
 		int nb = 0;
 		for (Outlet outlet : c.getOutlet()) {
@@ -162,6 +161,8 @@ public class displayOutlet extends JFrame {
 					System.out.println("on press" + pan);
 					int id_outlet = Integer.parseInt(pan);
 					serv.switchOn(id_outlet);
+					
+					contener.validate();
 				}
 			});
 
@@ -217,9 +218,14 @@ public class displayOutlet extends JFrame {
 					System.out.println("timer press" + pan);
 					int id_outlet = Integer.parseInt(pan);
 					
-					 /* Create and display the form */
-			        timerSet t = new timerSet();
-			        t.setVisible(true);
+			        /* Create and display the form */
+					timerSet t = null;
+					
+			        java.awt.EventQueue.invokeLater(new Runnable() {
+			            public void run() {
+			                new timerSet().setVisible(true);
+			            }
+			        });
 			        
 			        System.out.println(t.getTime());
 				}
@@ -238,16 +244,21 @@ public class displayOutlet extends JFrame {
 			contener.add(pannelOutlet);
 			nb++;
 		}
+		
+		contener.repaint();
+		contener.validate();
+	}
+	
+	@Override
+	public void paintComponents(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponents(g);
+		maj_outlets();
 	}
 	
 	@Override
 	public void repaint() {
 		maj_outlets();
-	}
-	
-	public void valida(){
-		contener.validate();
-		this.validate();
 	}
 	
 	/**
@@ -276,17 +287,5 @@ public class displayOutlet extends JFrame {
 		}
 		
 		return font;
-	}
-	
-	/** Returns an ImageIcon, or null if the path was invalid. */
-	protected ImageIcon createImageIcon(String path,
-	                                           String description) {
-	    java.net.URL imgURL = getClass().getResource(path);
-	    if (imgURL != null) {
-	        return new ImageIcon(imgURL, description);
-	    } else {
-	        System.err.println("Couldn't find file: " + path);
-	        return null;
-	    }
 	}
 }

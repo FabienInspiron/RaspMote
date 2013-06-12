@@ -1,11 +1,15 @@
 package local;
  
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 
-import ws.OutletArray; 
+import net.java.dev.jaxb.array.IntArray;
+
+import ws.OutletArray;
 
 @WebService
 @SOAPBinding(style = Style.RPC)
@@ -37,6 +41,8 @@ public interface IThirdPartyServer{
 	 */
 	@WebMethod void setTimer(int id_outlet, int timer, int mode);
 	
+	@WebMethod void stopTimer(int id_outlet);
+	
 	/**
 	 * Return the list of the outlet
 	 */
@@ -61,4 +67,13 @@ public interface IThirdPartyServer{
 	
 	@WebMethod void stopPresenceSimulator(int outlet);
 	
+	@WebMethod void switch_outlet(int idOutlet);
+	
+	@WebMethod float getTimer(int idOutlet);
+	
+	@WebMethod boolean isPresence(int idOutlet);
+	
+	@WebMethod IntArray getListTimer();
+	
+	@WebMethod IntArray getListPresence();
 }

@@ -1,6 +1,7 @@
 package client;
 
 import interfaceGraphique.displayOutlet;
+import interfaceGraphique.timerSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
