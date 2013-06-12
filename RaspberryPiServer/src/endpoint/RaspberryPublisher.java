@@ -7,7 +7,7 @@ import ws.RaspberryPiServerImpl;
 
  
 public class RaspberryPublisher{
-	private static String DOMAINE = "localhost";//"raspmote.no-ip.org";
+	private static String DOMAINE = "localhost"; //"raspmote.no-ip.org";
 	private static String serverURL = "http://"+DOMAINE+":9999/ws/raspberry";
 	private static String adminURL = "http://"+DOMAINE+":9997/ws/admin";
 

@@ -1,5 +1,7 @@
 package ws;
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -37,6 +39,8 @@ public interface IRaspberryPi {
 	 */
 	@WebMethod public void setTimer(int id_outlet, int timer, int mode);
 	
+	@WebMethod public void stopTimer(int id_outlet);
+	
 	/**
 	 * Put a presence simulator
 	 * @param idOutlet
@@ -58,4 +62,17 @@ public interface IRaspberryPi {
 	 * @return
 	 */
 	@WebMethod String getListOutletXML();
+	
+	/**
+	 * Return the end of the timer
+	 * @param idOutlet
+	 * @return
+	 */
+	@WebMethod float getTimer(int idOutlet);
+	
+	@WebMethod boolean isPresence(int idOutlet);
+	
+	@WebMethod Integer[] getListTimer();
+	
+	@WebMethod Integer[] getListPresence();
 }

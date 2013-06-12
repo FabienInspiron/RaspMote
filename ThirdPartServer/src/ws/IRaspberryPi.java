@@ -7,6 +7,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import net.java.dev.jaxb.array.IntArray;
 
 
 /**
@@ -18,7 +19,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @WebService(name = "IRaspberryPi", targetNamespace = "http://ws/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    ObjectFactory.class
+    ws.ObjectFactory.class,
+    net.java.dev.jaxb.array.ObjectFactory.class
 })
 public interface IRaspberryPi {
 
@@ -118,5 +120,56 @@ public interface IRaspberryPi {
     public void switchOutlet(
         @WebParam(name = "arg0", partName = "arg0")
         int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns float
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    public float getTimer(
+        @WebParam(name = "arg0", partName = "arg0")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    public boolean isPresence(
+        @WebParam(name = "arg0", partName = "arg0")
+        int arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    public void stopTimer(
+        @WebParam(name = "arg0", partName = "arg0")
+        int arg0);
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.IntArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    public IntArray getListTimer();
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.IntArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    public IntArray getListPresence();
 
 }

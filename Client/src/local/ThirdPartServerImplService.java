@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "ThirdPartServerImplService", targetNamespace = "http://local/", wsdlLocation = "http://localhost.org:9998/ws/thirdpartpublisher?wsdl")
+@WebServiceClient(name = "ThirdPartServerImplService", targetNamespace = "http://local/", wsdlLocation = "http://localhost:9998/ws/thirdpartpublisher?wsdl")
 public class ThirdPartServerImplService
     extends Service
 {
@@ -30,9 +30,9 @@ public class ThirdPartServerImplService
         try {
             URL baseUrl;
             baseUrl = local.ThirdPartServerImplService.class.getResource(".");
-            url = new URL(baseUrl, "http://localhost.org:9998/ws/thirdpartpublisher?wsdl");
+            url = new URL(baseUrl, "http://localhost:9998/ws/thirdpartpublisher?wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost.org:9998/ws/thirdpartpublisher?wsdl', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:9998/ws/thirdpartpublisher?wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         THIRDPARTSERVERIMPLSERVICE_WSDL_LOCATION = url;

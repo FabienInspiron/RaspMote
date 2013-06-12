@@ -1,5 +1,7 @@
 package ws;
 
+import java.util.List;
+
 import javax.jws.WebService;
 
 import metier.Adress;
@@ -75,5 +77,30 @@ public class RaspberryPiServerImpl implements IRaspberryPi{
 	@Override
 	public void switchOutlet(int idOutlet) {
 		dataManager.switchOutlet(idOutlet);		
+	}
+
+	@Override
+	public float getTimer(int idOutlet) {
+		return dataManager.getTimer(idOutlet);
+	}
+
+	@Override
+	public boolean isPresence(int idOutlet) {
+		return dataManager.isPresence(idOutlet);
+	}
+
+	@Override
+	public void stopTimer(int id_outlet) {
+		dataManager.stopTimer(id_outlet);
+	}
+
+	@Override
+	public Integer[] getListTimer() {
+		return dataManager.getListTimer();
+	}
+
+	@Override
+	public Integer[] getListPresence() {
+		return dataManager.getListPresence();
 	}
 }

@@ -48,6 +48,27 @@ public class Messages {
 		return xstream.toXML(ms);
 	}
 	
+	public static String outletTimer(Outlet out, float timee){
+		MessageSend ms = new MessageSend("TIMER", out,time++);
+		ms.setDateFinTimer(timee);
+		return xstream.toXML(ms);
+	}
+	
+	public static String outletPresence(Outlet out){
+		MessageSend ms = new MessageSend("PRESENCE", out,time++);
+		return xstream.toXML(ms);
+	}
+	
+	public static String outletSTOPPresence(Outlet out){
+		MessageSend ms = new MessageSend("STOP-PRESENCE", out,time++);
+		return xstream.toXML(ms);
+	}
+	
+	public static String outletSTOPTimer(Outlet out){
+		MessageSend ms = new MessageSend("STOP-TIMER", out,time++);
+		return xstream.toXML(ms);
+	}
+	
 	/***
 	 * Convert an object 
 	 * @param outl

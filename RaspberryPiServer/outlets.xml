@@ -21,7 +21,7 @@
     <int>2</int>
     <metier.Outlet>
       <id>2</id>
-      <state>true</state>
+      <state>false</state>
       <room>Salle a manger</room>
       <name>Fauteuil</name>
     </metier.Outlet>
@@ -66,7 +66,7 @@
     <int>7</int>
     <metier.Outlet>
       <id>7</id>
-      <state>false</state>
+      <state>true</state>
       <room>Salle de bains</room>
       <name>Chauffage</name>
     </metier.Outlet>

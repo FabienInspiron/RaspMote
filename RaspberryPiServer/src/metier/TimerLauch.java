@@ -12,6 +12,8 @@ public class TimerLauch implements Runnable {
 	 */
 	int timer;
 	
+	float timeFinish;
+	
 	/**
 	 * 0 -> switch_on
 	 * 1 -> switch_off
@@ -25,6 +27,7 @@ public class TimerLauch implements Runnable {
 		this.rasp= rasp;
 		this.timer = timer;
 		this.mode = mode;
+		this.timeFinish = System.currentTimeMillis() + timer*1000;
 	}
 	
 	public void run() {
@@ -55,5 +58,9 @@ public class TimerLauch implements Runnable {
 			default:
 				break;
 		}
+	}
+	
+	public float getTime(){
+		return timeFinish;
 	}
 }

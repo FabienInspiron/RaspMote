@@ -14,6 +14,7 @@ public class MessageSend {
 	Adress emitConsumer;
 	Date date;
 	int timeStampe;
+	float dateFinTimer;
 	
 	public MessageSend(String type, Outlet out, int timeStampe) {
 		super();
@@ -25,5 +26,9 @@ public class MessageSend {
 	public void setConsumer(String host, int port) {
 		Adress a = new Adress(host, port);
 		emitConsumer = a;
+	}
+	
+	public void setDateFinTimer(float tim){
+		dateFinTimer = tim;
 	}
 }

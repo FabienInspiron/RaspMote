@@ -1,28 +1,15 @@
 package client;
 
 import interfaceGraphique.displayOutlet;
+import interfaceGraphique.timerSet;
 
 import java.io.IOException;
-import java.io.StringReader;
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import local.IThirdPartyServer;
 import local.ThirdPartServerImplService;
-
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
 import ws.Outlet;
 import ws.OutletArray;
 
@@ -46,6 +33,10 @@ public class Client {
 	
 	public HashMap<Integer, Outlet> list_outlet;
 	
+	public List<Integer> list_timer;
+	
+	public List<Integer> list_presence;
+	
 	public displayOutlet dispOut;
 	
 	public Client() {
@@ -65,10 +56,11 @@ public class Client {
 		listner.start();
 		
 		list_outlet = new HashMap<Integer, Outlet>();
-		
+		list_presence = new ArrayList<Integer>();
 		
 		OutletArray tab = serv.getListOutlet();
 		updateList(tab.getItem());
+		list_timer = new ArrayList<Integer>();
 		
 		/**
 		 * Graphique display
@@ -111,11 +103,49 @@ public class Client {
 		checkTimeStamp(val);
 		
 		String mode = Util.attribut(not, "type");
-		if(mode.equals("CHANGE")){
+		if(mode.equals("CHANGE")) {
 			int id_out = Integer.parseInt(Util.attribut(not, "id"));
 			list_outlet.get(id_out).setName(Util.attribut(not, "name"));
 			list_outlet.get(id_out).setRoom(Util.attribut(not, "room"));
 			list_outlet.get(id_out).setState(Boolean.parseBoolean(Util.attribut(not, "state")));
+			
+			/**
+			 * Stop timer in the outlet
+			 */
+			if(list_timer.contains(new Integer(id_out)))
+				list_timer.remove(new Integer(id_out));
+		}
+		
+		if(mode.equals("TIMER")) {
+			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			list_timer.add(new Integer(id_out));
+			
+			list_outlet.get(id_out).setState(Boolean.parseBoolean(Util.attribut(not, "state")));
+		}
+		
+		if(mode.equals("PRESENCE")) {
+			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			list_presence.add(new Integer(id_out));
+			
+			list_outlet.get(id_out).setState(Boolean.parseBoolean(Util.attribut(not, "state")));
+		}
+		
+		if(mode.equals("STOP-PRESENCE")) {
+			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			
+			if(list_presence.contains(new Integer(id_out)))
+				list_presence.remove(new Integer(id_out));
+		}
+		
+		if(mode.equals("STOP-TIMER")) {
+			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			
+			if(list_timer.contains(new Integer(id_out)))
+				list_timer.remove(new Integer(id_out));
+		}
+		
+		if(mode.equals("LIST")) {
+			updateList();
 		}
 		
 		dispOut.dispose();
@@ -131,7 +161,7 @@ public class Client {
 			timeStamp = value;
 		
 		if(timeStamp++ != value){
-			System.out.println("Erreur, un message non reçu");
+			updateList();
 		}
 	}
 	
@@ -151,5 +181,26 @@ public class Client {
 	
 	public List<Outlet> getOutlet(){
 		return new ArrayList<Outlet>(list_outlet.values());
+	}
+	
+	public boolean asTimer(int id_outlet){
+		return list_timer.contains(new Integer(id_outlet));
+	}
+	
+	public boolean asPresence(int id_outlet){
+		return list_presence.contains(new Integer(id_outlet));
+	}
+	
+	/**
+	 * Error occur, update all list
+	 */
+	public void updateList(){
+		List<Outlet> list = serv.getListOutlet().getItem();
+		for (Outlet outlet : list) {
+			list_outlet.put(outlet.getId(), outlet);
+		}
+		
+		list_timer = serv.getListTimer().getItem();
+		list_presence = serv.getListPresence().getItem();
 	}
 }
