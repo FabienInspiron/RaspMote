@@ -35,7 +35,7 @@ public class NotificationListner extends Thread {
 							new InputStreamReader(in));
 
 					String msg = d.readLine();
-					System.out.println("Notification reçu : "+ msg);
+					System.out.println(msg);
 					
 					try {
 						client.analyseNotification(msg);

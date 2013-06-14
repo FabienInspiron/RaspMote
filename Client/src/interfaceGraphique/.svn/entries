@@ -1,14 +1,14 @@
 10
 
 dir
-55
+60
 https://raspmote.googlecode.com/svn/trunk/trunk/Client/src/interfaceGraphique
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-12T07:29:53.099999Z
-55
+2013-06-12T19:48:59.887439Z
+60
 belli.fabien@gmail.com
 
 
@@ -33,16 +33,16 @@ b35a5cc3-cdc2-6e81-269e-00ee3418f330
 
 0
 
-displayOutlet.java
+DialoguePresence.java
 file
 
 
 
 
-2013-06-11T18:15:13.000000Z
-d7ba7b571b47f44b4d6f4f9399c447ce
-2013-06-12T07:29:53.099999Z
-55
+2013-06-12T19:37:06.000000Z
+792f4c529054344eb6e34cab56e455f2
+2013-06-12T19:48:59.887439Z
+60
 belli.fabien@gmail.com
 has-props
 
@@ -65,18 +65,18 @@ has-props
 
 
 
-7300
+5289
 
-timerSet.java
+DialogueTimer.java
 file
 
 
 
 
-2013-06-11T18:11:56.000000Z
-602f924c4e1647e22ec4e1784b08a910
-2013-06-12T07:29:53.099999Z
-55
+2013-06-12T19:36:10.000000Z
+786048bd0263b360dbb2bdbccbb1e75b
+2013-06-12T19:48:59.887439Z
+60
 belli.fabien@gmail.com
 has-props
 
@@ -99,5 +99,39 @@ has-props
 
 
 
-14027
+10431
+
+DisplayOutlet.java
+file
+
+
+
+
+2013-06-12T19:34:18.000000Z
+7c1c078e3e58f999c398a7a175d78cf7
+2013-06-12T19:48:59.887439Z
+60
+belli.fabien@gmail.com
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7328
 

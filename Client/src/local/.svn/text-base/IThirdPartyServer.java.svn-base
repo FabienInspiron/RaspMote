@@ -20,8 +20,8 @@ import ws.OutletArray;
 @WebService(name = "IThirdPartyServer", targetNamespace = "http://local/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    net.java.dev.jaxb.array.ObjectFactory.class,
-    ws.ObjectFactory.class
+    ws.ObjectFactory.class,
+    net.java.dev.jaxb.array.ObjectFactory.class
 })
 public interface IThirdPartyServer {
 

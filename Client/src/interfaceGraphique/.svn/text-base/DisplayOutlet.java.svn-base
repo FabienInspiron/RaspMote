@@ -22,7 +22,7 @@ import local.IThirdPartyServer;
 import ws.Outlet;
 import client.Client;
 
-public class displayOutlet extends JFrame {
+public class DisplayOutlet extends JFrame {
 
 	private JLabel id = new JLabel();
 	private JLabel room = new JLabel();
@@ -45,11 +45,17 @@ public class displayOutlet extends JFrame {
 	
 	Client c;
 	IThirdPartyServer serv;
-	
+	DisplayOutlet d;
+	String time = "";
 
-	public displayOutlet(Client c, final IThirdPartyServer serv) {
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public DisplayOutlet(Client c, final IThirdPartyServer serv) {
 		super("Liste");
-
+		d = this;
+		
 		lampe_on = new ImageIcon("img/lampe_on.png");
 		lampe_off = new ImageIcon("img/lampe_off.png");
 		timerIco = new ImageIcon("img/time.png");
@@ -205,7 +211,12 @@ public class displayOutlet extends JFrame {
 					String pan = but.getActionCommand();
 					System.out.println("presence press" + pan);
 					int id_outlet = Integer.parseInt(pan);
-					serv.simulatePresence(id_outlet, 5);
+					
+					DialoguePresence pre = new DialoguePresence(d, true);
+					pre.setVisible(true);
+					
+					if(pre.isValide())
+						serv.simulatePresence(id_outlet, pre.getFrequency());
 				}
 			});
 			
@@ -219,15 +230,11 @@ public class displayOutlet extends JFrame {
 					int id_outlet = Integer.parseInt(pan);
 					
 			        /* Create and display the form */
-					timerSet t = null;
+					DialogueTimer t = new DialogueTimer(d, true);
+					t.setVisible(true);
 					
-			        java.awt.EventQueue.invokeLater(new Runnable() {
-			            public void run() {
-			                new timerSet().setVisible(true);
-			            }
-			        });
-			        
-			        System.out.println(t.getTime());
+					if(t.isValid())
+						serv.setTimer(id_outlet, t.getTime(), t.getMode());
 				}
 			});
 			

@@ -1,8 +1,6 @@
 package client;
 
-import interfaceGraphique.displayOutlet;
-import interfaceGraphique.mainWindow;
-import interfaceGraphique.timerSet;
+import interfaceGraphique.DisplayOutlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +19,8 @@ import ws.OutletArray;
  * 
  */
 public class Client {
-	public static final String IP_SUBSCRIBE = "127.0.0.1";
+	public static final String IP_SUBSCRIBE2 = "157.169.102.132";
+	public static final String IP_SUBSCRIBE= "localhost";
 
 	public static int timeStamp = 0;
 
@@ -39,7 +38,7 @@ public class Client {
 
 	public List<Integer> list_presence;
 
-	public displayOutlet dispOut;
+	public DisplayOutlet dispOut;
 
 	public Client() {
 		try {
@@ -49,7 +48,7 @@ public class Client {
 			e.printStackTrace();
 		}
 
-		serv.subscribe("localhost", listner.port);
+		serv.subscribe(IP_SUBSCRIBE, listner.port);
 
 		/**
 		 * Listner on server events
@@ -60,14 +59,17 @@ public class Client {
 		list_outlet = new HashMap<Integer, Outlet>();
 		list_presence = new ArrayList<Integer>();
 
-		OutletArray tab = serv.getListOutlet();
-		updateList(tab.getItem());
+		/**
+		 * Stay list up to date
+		 */
+		updateList();
+
 		list_timer = new ArrayList<Integer>();
 
 		/**
 		 * Graphique display
 		 */
-		 dispOut = new displayOutlet(this, serv);
+		 dispOut = new DisplayOutlet(this, serv);
 		/* Create and display the form */
 		//new mainWindow(this, serv).setVisible(true);
 	}
@@ -173,17 +175,6 @@ public class Client {
 
 		if (timeStamp++ != value) {
 			updateList();
-		}
-	}
-
-	/**
-	 * Update the entire list
-	 * 
-	 * @param list
-	 */
-	public void updateList(List<Outlet> list) {
-		for (Outlet outlet : list) {
-			list_outlet.put(outlet.getId(), outlet);
 		}
 	}
 
