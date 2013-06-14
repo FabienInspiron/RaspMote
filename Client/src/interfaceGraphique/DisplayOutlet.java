@@ -2,9 +2,11 @@ package interfaceGraphique;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -17,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 
 import local.IThirdPartyServer;
 import ws.Outlet;
@@ -33,6 +37,7 @@ public class DisplayOutlet extends JFrame {
 	private JButton timer = new JButton("timer");
 	private JButton presence = new JButton("presence");
 	private Font UI_light = getFont("UI.ttf");
+	JPanel statusPanel = new JPanel();
 	
 	private ImageIcon lampe_on;
 	private ImageIcon lampe_off;
@@ -70,10 +75,14 @@ public class DisplayOutlet extends JFrame {
 		
 		contener = new  JPanel();
 		contener.setLayout(new BoxLayout(contener, BoxLayout.Y_AXIS));
-		JScrollPane scroller = new JScrollPane(contener);
-		this.getContentPane().add(scroller);
+		
+		JScrollPane vertical = new JScrollPane(outletPan);
+		vertical.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		contener.add(vertical);
 
 		maj_outlets();
+		
+		createStatusBar("Client created...");
 		
 		this.add(contener);
 		this.setLocationRelativeTo(null);
@@ -81,6 +90,21 @@ public class DisplayOutlet extends JFrame {
 		this.setVisible(true);
 	}
 
+	public void createStatusBar(String msg){
+		statusPanel.removeAll();
+		
+		statusPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
+		this.add(statusPanel, BorderLayout.SOUTH);
+		statusPanel.setPreferredSize(new Dimension(this.getWidth(), 20));
+		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.X_AXIS));
+		JLabel statusLabel = new JLabel(msg);
+		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		statusPanel.add(statusLabel);
+		
+		statusPanel.repaint();
+		statusPanel.revalidate();
+	}
+	
 	public void maj_outlets() {	
 		contener.removeAll();
 		
@@ -124,8 +148,6 @@ public class DisplayOutlet extends JFrame {
 				off.setBackground(Color.gray);
 
 			pannelOutlet.add(id, BorderLayout.WEST);
-			//pannelOutlet.add(room, BorderLayout.SOUTH);
-			
 			pannelOutlet.add(name, BorderLayout.NORTH);
 
 			buttons.add(on);
