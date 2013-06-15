@@ -1,6 +1,6 @@
 cd Client
 cd src
-wsimport -keep http://raspmote.no-ip.org:9998/ws/thirdpartpublisher?wsdl
+wsimport -keep http://127.0.0.1:9998/ws/thirdpartpublisher?wsdl
 cd ..
 ant clean
 ant 

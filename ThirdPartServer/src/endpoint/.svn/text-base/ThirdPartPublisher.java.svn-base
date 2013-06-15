@@ -10,14 +10,15 @@ import metier.Adress;
 
 public class ThirdPartPublisher {
 
-	public static final String IP = "localhost";//Adress.getIpPublic();
 	public static final String PORT = "9998";
 	public static final String PATH = "/ws/thirdpartpublisher";
-	public static final String ADRESSE = "http://" + IP + ":" + PORT + PATH;
 	
 	public static void main(String[] args) {
 		ThirdPartServerImpl server = new ThirdPartServerImpl();
-		
+                
+                String IP = args[0];
+                String ADRESSE = "http://" + IP + ":" + PORT + PATH;
+
 		Endpoint.publish(ADRESSE, server);
 		System.out.println("Service publié a l'adresse : "+ ADRESSE);
 		System.out.println("Theard server created ...");

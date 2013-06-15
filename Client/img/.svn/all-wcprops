@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/63/trunk/trunk/Client/img
+END
+presence.png
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/63/trunk/trunk/Client/img/presence.png
+END
+lampe_off.png
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/63/trunk/trunk/Client/img/lampe_off.png
+END
+time.png
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/63/trunk/trunk/Client/img/time.png
+END
+lampe_on.png
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/63/trunk/trunk/Client/img/lampe_on.png
+END

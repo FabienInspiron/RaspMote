@@ -28,6 +28,7 @@ import client.Client;
 
 public class DisplayOutlet extends JFrame {
 
+	private static final String FOLDER_IMG = "src/img/";
 	private JLabel id = new JLabel();
 	private JLabel room = new JLabel();
 	private JLabel name = new JLabel();
@@ -36,7 +37,7 @@ public class DisplayOutlet extends JFrame {
 	private JButton off = new JButton("off");
 	private JButton timer = new JButton("timer");
 	private JButton presence = new JButton("presence");
-	private Font UI_light = getFont("UI.ttf");
+	private Font UI_light = new Font("comic sans ms", Font.BOLD, 23);//getFont("UI.ttf");
 	JPanel statusPanel = new JPanel();
 	
 	private ImageIcon lampe_on;
@@ -61,10 +62,10 @@ public class DisplayOutlet extends JFrame {
 		super("Liste");
 		d = this;
 		
-		lampe_on = new ImageIcon("img/lampe_on.png");
-		lampe_off = new ImageIcon("img/lampe_off.png");
-		timerIco = new ImageIcon("img/time.png");
-		presenceIco = new ImageIcon("img/presence.png");
+		lampe_on = new ImageIcon(FOLDER_IMG  + "lampe_on.png");
+		lampe_off = new ImageIcon(FOLDER_IMG  + "lampe_off.png");
+		timerIco = new ImageIcon(FOLDER_IMG  +"time.png");
+		presenceIco = new ImageIcon(FOLDER_IMG  +"presence.png");
 		
 		this.c = c;
 		this.serv = serv;

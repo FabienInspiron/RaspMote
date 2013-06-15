@@ -34,19 +34,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link OutletArray }
-     * 
-     */
-    public OutletArray createOutletArray() {
-        return new OutletArray();
-    }
-
-    /**
      * Create an instance of {@link Outlet }
      * 
      */
     public Outlet createOutlet() {
         return new Outlet();
+    }
+
+    /**
+     * Create an instance of {@link OutletArray }
+     * 
+     */
+    public OutletArray createOutletArray() {
+        return new OutletArray();
     }
 
     /**

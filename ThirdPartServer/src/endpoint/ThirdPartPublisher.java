@@ -1,23 +1,23 @@
 package endpoint;
 
-import java.io.IOException;
-
 import javax.xml.ws.Endpoint;
 
-import local.NotificationListner;
 import local.ThirdPartServerImpl;
-import metier.Adress;
 
 public class ThirdPartPublisher {
 
-	public static final String IP = "localhost";//Adress.getIpPublic();
+	public static final String IP = "192.168.1.17"; //Adress.getIpPublic();
 	public static final String PORT = "9998";
 	public static final String PATH = "/ws/thirdpartpublisher";
-	public static final String ADRESSE = "http://" + IP + ":" + PORT + PATH;
 	
 	public static void main(String[] args) {
-		ThirdPartServerImpl server = new ThirdPartServerImpl();
 		
+		
+		ThirdPartServerImpl server = new ThirdPartServerImpl();
+                
+                String IPl = IP;
+                String ADRESSE = "http://" + IPl + ":" + PORT + PATH;
+
 		Endpoint.publish(ADRESSE, server);
 		System.out.println("Service publié a l'adresse : "+ ADRESSE);
 		System.out.println("Theard server created ...");

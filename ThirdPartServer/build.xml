@@ -6,12 +6,19 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="ThirdPartServer">
     <property environment="env"/>
+    <property name="Client.location" value="../Client"/>
     <property name="ECLIPSE_HOME" value="../../../../../../../usr/lib/eclipse"/>
+    <property name="RaspberryPiServer.location" value="../RaspberryPiServer"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
+    <path id="RaspberryPiServer.classpath">
+        <pathelement location="${RaspberryPiServer.location}/bin"/>
+        <pathelement location="${RaspberryPiServer.location}/../lib/xstream-1.4.4.jar"/>
+    </path>
     <path id="ThirdPartServer.classpath">
         <pathelement location="bin"/>
+        <path refid="RaspberryPiServer.classpath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -24,9 +31,17 @@
     <target name="clean">
         <delete dir="bin"/>
     </target>
-    <target depends="clean" name="cleanall"/>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build.xml" dir="${RaspberryPiServer.location}" inheritAll="false" target="clean"/>
+    </target>
     <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
+    <target name="build-subprojects">
+        <ant antfile="build.xml" dir="${RaspberryPiServer.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
@@ -34,7 +49,14 @@
             <classpath refid="ThirdPartServer.classpath"/>
         </javac>
     </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="build.xml" dir="${Client.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${Client.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
             <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>

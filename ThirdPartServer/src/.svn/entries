@@ -1,15 +1,15 @@
 10
 
 dir
-55
+67
 https://raspmote.googlecode.com/svn/trunk/trunk/ThirdPartServer/src
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-12T07:29:02.775963Z
-54
-belli.fabien@gmail.com
+2013-06-14T10:59:40.065013Z
+61
+cyril.gorrieri@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -25,13 +25,6 @@ svn:special svn:externals svn:needs-lock
 
 
 b35a5cc3-cdc2-6e81-269e-00ee3418f330
-
-
-
-
-
-
-0
 
 endpoint
 dir

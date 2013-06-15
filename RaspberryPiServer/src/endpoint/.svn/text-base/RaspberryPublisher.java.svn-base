@@ -23,7 +23,7 @@ public class RaspberryPublisher{
 	   
 	   Endpoint.publish(adminURL, raspAdmin);
 	   System.out.println("Lauch raspberry pi admin... ");
+	   System.out.println("Publication of the wsdl : "+ adminURL+"?wsdl");
 	   
-	   System.out.println("Lauch service here : "+serverURL);
     }
 }

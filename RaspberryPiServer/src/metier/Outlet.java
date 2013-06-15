@@ -38,53 +38,10 @@ public class Outlet {
 	
 	public String name;
 	
-	/**
-	 * Image of the outlet
-	 */
-	
-	//byte[] image;
-	
 	public void init(int id, boolean state, String name, String room){
 		this.id = id;
 		this.state = state;
 		this.name = name;
 		this.room = room;
-	}
-	//ImageIcon image;
-	
-	/**
-	 * switch the outlet on
-	 */
-	public void switch_on(){
-		state = true;
-	}
-	
-	/**
-	 * switch the outlet off
-	 */
-	public void switch_off(){
-		state = false;
-	}
-	
-	/**
-	 * Get the id_outlet
-	 * @return
-	 */
-	public int getID(){
-		return id;
-	}
-	
-	public static String OutletToString(Outlet o) {
-		return "Outlet [id=" + o.id + ", state=" + o.state + ", room=" + o.room
-				+ ", name=" + o.name + "]";
-	}
-	
-	@Override
-	public String toString() {
-		return "Outlet " + id + " : name = " +name + " room = " + room + " state = " + state;
-	}
-	
-	public void switch_outlet() {
-		state = !state;
 	}
 }

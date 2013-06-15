@@ -33,6 +33,7 @@ public class NotificationListner extends Thread {
             while (true) {
                 Socket socket = listener.accept();
                 try {
+                	
 					DataInputStream in = new DataInputStream(
 							socket.getInputStream());
 					BufferedReader d = new BufferedReader(
@@ -42,8 +43,8 @@ public class NotificationListner extends Thread {
 					
                     third.notifyAllClients(msg);
                     
-                    in.close();
                     d.close();
+                    in.close();
                 } finally {
                     socket.close();
                 }

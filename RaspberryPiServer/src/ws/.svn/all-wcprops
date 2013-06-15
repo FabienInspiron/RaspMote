@@ -1,19 +1,19 @@
 K 25
 svn:wc:ra_dav:version-url
 V 53
-/svn/!svn/ver/53/trunk/trunk/RaspberryPiServer/src/ws
+/svn/!svn/ver/57/trunk/trunk/RaspberryPiServer/src/ws
 END
 RaspberryPiAdminServerImpl.java
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/svn/!svn/ver/49/trunk/trunk/RaspberryPiServer/src/ws/RaspberryPiAdminServerImpl.java
+/svn/!svn/ver/57/trunk/trunk/RaspberryPiServer/src/ws/RaspberryPiAdminServerImpl.java
 END
 IRaspberryPi.java
 K 25
 svn:wc:ra_dav:version-url
 V 71
-/svn/!svn/ver/53/trunk/trunk/RaspberryPiServer/src/ws/IRaspberryPi.java
+/svn/!svn/ver/56/trunk/trunk/RaspberryPiServer/src/ws/IRaspberryPi.java
 END
 RaspberryPiServerImpl.java
 K 25
@@ -25,5 +25,5 @@ IRaspberryPiAdmin.java
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/svn/!svn/ver/49/trunk/trunk/RaspberryPiServer/src/ws/IRaspberryPiAdmin.java
+/svn/!svn/ver/56/trunk/trunk/RaspberryPiServer/src/ws/IRaspberryPiAdmin.java
 END

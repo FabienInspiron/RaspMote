@@ -5,13 +5,17 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebService;
 
 import metier.Adress;
+import metier.NotificationThread;
 import metier.User;
+import metier.UtilIP;
 import net.java.dev.jaxb.array.IntArray;
 import ws.IRaspberryPi;
 import ws.OutletArray;
@@ -64,10 +68,22 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 		RaspberryPiServerImplService ra = new RaspberryPiServerImplService();
 		rasp = ra.getRaspberryPiServerImplPort();
 		
+		String ip = null;
+		
+		try {
+			ip = UtilIP.getIP();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		/**
 		 * Subscribe to the notification system
 		 */
-		rasp.subscribe("localhost", listner.port);
+		rasp.subscribe(ip, listner.port);
 		listner.start();
 	}
 	
@@ -90,7 +106,6 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 	public void notifyAllClients(String msg) {
 		if(msg == null) return;
 		
-		System.out.println("Notification...");
 		
 		// Temporare list
 		List<Adress> list_client_tmp = new ArrayList<Adress>(list_clients);
@@ -98,28 +113,32 @@ public class ThirdPartServerImpl implements IThirdPartyServer{
 		for(Adress u : list_client_tmp) {	
 			try
 	        {	
-				System.out.println("Notification vers : " + u.getHost() +":"+ u.getPort());
-				Socket socket = new Socket(u.getHost(), u.getPort());
+//				System.out.println("Notification vers : " + u.getHost() +":"+ u.getPort());
+//				Socket socket = new Socket(u.getHost(), u.getPort());
+//
+//		        PrintWriter pred = new PrintWriter(
+//		                             new BufferedWriter(
+//		                                new OutputStreamWriter(socket.getOutputStream())),
+//		                             true);
+//
+//		        /**
+//		         * Delete all the cariage return because the are used to
+//		         * put the end of a socket.
+//		         */
+//		        msg = msg.trim();
+//		        msg = msg.replaceAll("\\n", "");
+//		        msg = msg.replaceAll("\\r\\n", ""); 
+//		        msg += "\n";
+//		        
+//		        pred.println(msg);
+//		        pred.flush();
+//		        pred.close();
+//		        socket.close();
+				
+				new Thread(new NotificationThread(u, msg)).start();
 
-		        PrintWriter pred = new PrintWriter(
-		                             new BufferedWriter(
-		                                new OutputStreamWriter(socket.getOutputStream())),
-		                             true);
-
-		        /**
-		         * Delete all the cariage return because the are used to
-		         * put the end of a socket.
-		         */
-		        msg = msg.trim();
-		        msg = msg.replaceAll("\\n", "");
-		        msg = msg.replaceAll("\\r\\n", ""); 
-		        msg += "\n";
-		        
-		        pred.println(msg);
-		        pred.flush();
-		        pred.close();
-		        socket.close();
-	        }catch(Exception e){e.printStackTrace();}
+		        System.out.println("Notification...");
+	        }catch(Exception e){}
 		}
 	}
 	

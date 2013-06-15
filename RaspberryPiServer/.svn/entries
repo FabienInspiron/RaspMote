@@ -1,15 +1,15 @@
 10
 
 dir
-55
+67
 https://raspmote.googlecode.com/svn/trunk/trunk/RaspberryPiServer
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-12T07:15:10.948786Z
-53
-belli.fabien@gmail.com
+
+
+
 
 
 svn:special svn:externals svn:needs-lock
@@ -23,7 +23,7 @@ svn:special svn:externals svn:needs-lock
 
 
 
-
+incomplete
 b35a5cc3-cdc2-6e81-269e-00ee3418f330
 
 .classpath
@@ -32,7 +32,7 @@ file
 
 
 
-2013-06-08T07:17:50.000000Z
+2013-06-15T09:57:33.000000Z
 8d994b42d52ce499ca32df8d1b7bb72e
 2013-06-08T12:36:09.127146Z
 38
@@ -66,7 +66,7 @@ file
 
 
 
-2013-06-04T14:55:34.000000Z
+2013-06-15T09:57:33.000000Z
 52909fd61ee62c18865daabb57f9b620
 2013-06-05T07:17:25.322355Z
 5
@@ -94,77 +94,29 @@ has-props
 
 376
 
-.settings
-dir
-
 build.xml
 file
+0
+
+
+add
 
 
 
 
-2013-06-10T12:33:55.000000Z
-c18087c76133b710ceaf6dbaa164bba6
-2013-06-09T12:52:34.549201Z
-43
-belli.fabien@gmail.com
+
 has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3101
 
 outlets.xml
 file
+0
+
+
+add
 
 
 
 
-2013-06-06T12:18:17.000000Z
-d78205380051efc48796304b3f3d61f0
-2013-06-08T12:36:09.127146Z
-38
-belli.fabien@gmail.com
+
 has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-321
-
-src
-dir
 

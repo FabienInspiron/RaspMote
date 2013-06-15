@@ -3,10 +3,19 @@ package client;
 import interfaceGraphique.DisplayOutlet;
 
 import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.xml.namespace.QName;
 
 import local.IThirdPartyServer;
 import local.ThirdPartServerImplService;
@@ -48,7 +57,19 @@ public class Client {
 			e.printStackTrace();
 		}
 
-		serv.subscribe(IP_SUBSCRIBE, listner.port);
+		String ip = null;
+		
+		try {
+			ip = Util.getIP();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		serv.subscribe(ip, listner.port);
 
 		/**
 		 * Listner on server events
@@ -75,7 +96,7 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
-
+		
 		serv = null;
 		ThirdPartServerImplService thirdPart = null;
 

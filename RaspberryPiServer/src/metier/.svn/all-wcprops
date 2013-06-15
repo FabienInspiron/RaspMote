@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 57
-/svn/!svn/ver/53/trunk/trunk/RaspberryPiServer/src/metier
+/svn/!svn/ver/57/trunk/trunk/RaspberryPiServer/src/metier
 END
 TimerLauch.java
 K 25
@@ -25,13 +25,19 @@ Outlet.java
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/svn/!svn/ver/53/trunk/trunk/RaspberryPiServer/src/metier/Outlet.java
+/svn/!svn/ver/56/trunk/trunk/RaspberryPiServer/src/metier/Outlet.java
 END
 Messages.java
 K 25
 svn:wc:ra_dav:version-url
 V 71
-/svn/!svn/ver/53/trunk/trunk/RaspberryPiServer/src/metier/Messages.java
+/svn/!svn/ver/56/trunk/trunk/RaspberryPiServer/src/metier/Messages.java
+END
+FullOutlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/56/trunk/trunk/RaspberryPiServer/src/metier/FullOutlet.java
 END
 User.java
 K 25
@@ -49,5 +55,5 @@ DataManager.java
 K 25
 svn:wc:ra_dav:version-url
 V 74
-/svn/!svn/ver/53/trunk/trunk/RaspberryPiServer/src/metier/DataManager.java
+/svn/!svn/ver/57/trunk/trunk/RaspberryPiServer/src/metier/DataManager.java
 END

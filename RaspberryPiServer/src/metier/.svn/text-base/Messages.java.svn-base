@@ -19,12 +19,13 @@ public class Messages {
 	
 	/**
 	 * Construct the notify xml query to send
-	 * @param out
+	 * @param outl
 	 * @return
 	 */
-	public static String addOutlet(Outlet out) {
-		MessageSend ms = new MessageSend("ADD", out, time++);
-		return xstream.toXML(ms);
+	public static String addOutlet(FullOutlet outl) {
+//		MessageSend ms = new MessageSend("ADD", outl, time++);
+//		return xstream.toXML(ms);
+		return null;
 	}
 
 	/**

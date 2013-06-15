@@ -1,15 +1,15 @@
 10
 
 dir
-55
+60
 https://raspmote.googlecode.com/svn/trunk/trunk/RaspberryPiServer/src/metier
 https://raspmote.googlecode.com/svn
 
 
 
-2013-06-12T07:15:10.948786Z
-53
-belli.fabien@gmail.com
+2013-06-12T18:00:35.029854Z
+57
+cyril.gorrieri@gmail.com
 
 
 svn:special svn:externals svn:needs-lock
@@ -69,15 +69,15 @@ has-props
 
 DataManager.java
 file
+57
 
 
 
-
-2013-06-11T14:53:16.000000Z
-687b746eda8f074dc13201333f4b7a79
-2013-06-12T07:15:10.948786Z
-53
-belli.fabien@gmail.com
+2013-06-13T12:01:06.000000Z
+c9dc249c7578bd0ac12afa5c83630b69
+2013-06-12T18:00:35.029854Z
+57
+cyril.gorrieri@gmail.com
 has-props
 
 
@@ -99,7 +99,41 @@ has-props
 
 
 
-7931
+8686
+
+FullOutlet.java
+file
+
+
+
+
+2013-06-13T11:56:38.000000Z
+d4dad2e6b180fc3280c951211582699e
+2013-06-12T17:58:01.463670Z
+56
+cyril.gorrieri@gmail.com
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1337
 
 MessageSend.java
 file
@@ -141,11 +175,11 @@ file
 
 
 
-2013-06-11T14:12:29.000000Z
-b55a6922af42ab2fd2b13c67f026eed1
-2013-06-12T07:15:10.948786Z
-53
-belli.fabien@gmail.com
+2013-06-13T11:56:38.000000Z
+e34e65455d139b035e9de9c92f1b923e
+2013-06-12T17:58:01.463670Z
+56
+cyril.gorrieri@gmail.com
 has-props
 
 
@@ -167,7 +201,7 @@ has-props
 
 
 
-1862
+1888
 
 Outlet.java
 file
@@ -175,11 +209,11 @@ file
 
 
 
-2013-06-10T14:13:38.000000Z
-147930f64c19ffd1c374589978348d05
-2013-06-12T07:15:10.948786Z
-53
-belli.fabien@gmail.com
+2013-06-13T11:56:38.000000Z
+cd141a2b2c4c310ace5929c2e57494c1
+2013-06-12T17:58:01.463670Z
+56
+cyril.gorrieri@gmail.com
 has-props
 
 
@@ -201,14 +235,37 @@ has-props
 
 
 
-1524
+853
+
+PresenceThread.java
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+
+
+
+
+
+copied
+https://raspmote.googlecode.com/svn/trunk/trunk/RaspberryPiServer/src/metier/ThreadPresenceSimulator.java
+60
 
 ThreadPresenceSimulator.java
 file
 
 
 
-
+delete
 2013-06-09T11:17:12.000000Z
 f22d447e2bf0d81f4593b4735189ed23
 2013-06-09T12:52:34.549201Z
@@ -242,7 +299,7 @@ file
 
 
 
-
+delete
 2013-06-11T08:15:54.000000Z
 298b27692be8cbb6deaf3a5ea4e2f3bf
 2013-06-12T07:15:10.948786Z
@@ -270,6 +327,29 @@ has-props
 
 
 1010
+
+TimerThread.java
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+
+
+
+
+
+copied
+https://raspmote.googlecode.com/svn/trunk/trunk/RaspberryPiServer/src/metier/TimerLauch.java
+60
 
 User.java
 file

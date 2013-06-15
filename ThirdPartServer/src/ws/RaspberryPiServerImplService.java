@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "RaspberryPiServerImplService", targetNamespace = "http://ws/", wsdlLocation = "http://localhost:9999/ws/raspberry?wsdl")
+@WebServiceClient(name = "RaspberryPiServerImplService", targetNamespace = "http://ws/", wsdlLocation = "http://192.168.1.17:9990/ws/raspberry?wsdl")
 public class RaspberryPiServerImplService
     extends Service
 {
@@ -30,9 +30,9 @@ public class RaspberryPiServerImplService
         try {
             URL baseUrl;
             baseUrl = ws.RaspberryPiServerImplService.class.getResource(".");
-            url = new URL(baseUrl, "http://localhost:9999/ws/raspberry?wsdl");
+            url = new URL(baseUrl, "http://192.168.1.17:9990/ws/raspberry?wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:9999/ws/raspberry?wsdl', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'http://192.168.1.17:9990/ws/raspberry?wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         RASPBERRYPISERVERIMPLSERVICE_WSDL_LOCATION = url;
