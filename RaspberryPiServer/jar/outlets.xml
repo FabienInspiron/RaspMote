@@ -3,7 +3,7 @@
     <int>0</int>
     <metier.FullOutlet>
       <id>0</id>
-      <state>true</state>
+      <state>false</state>
       <room>Salle a manger</room>
       <name>TV</name>
       <comNb>tutu</comNb>
@@ -14,7 +14,7 @@
     <int>1</int>
     <metier.FullOutlet>
       <id>1</id>
-      <state>true</state>
+      <state>false</state>
       <room>Salle a manger</room>
       <name>Lampe</name>
       <comNb>tutu</comNb>

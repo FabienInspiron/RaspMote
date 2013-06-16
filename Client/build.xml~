@@ -93,13 +93,11 @@
         <jar destfile="/home/belli/Polytech/S8/Raspmote/JWS/Client/jar/Client.jar">
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
-                <attribute name="Rsrc-Main-Class" value="client.Client"/>
+                <attribute name="Rsrc-Main-Class" value="endpoint.ThirdPartPublisher"/>
                 <attribute name="Class-Path" value="."/>
-                <attribute name="Rsrc-Class-Path" value="./ jdom-2.0.5.jar xstream-1.4.4.jar"/>
+                <attribute name="Rsrc-Class-Path" value="./ xstream-1.4.4.jar"/>
             </manifest>
             <zipfileset src="jar-in-jar-loader.zip"/>
-            <fileset dir="/home/belli/Polytech/S8/Raspmote/JWS/Client/bin"/>
-            <zipfileset dir="/home/belli/Polytech/S8/Raspmote/JWS/lib" includes="jdom-2.0.5.jar"/>
             <fileset dir="/home/belli/Polytech/S8/Raspmote/JWS/ThirdPartServer/bin"/>
             <fileset dir="/home/belli/Polytech/S8/Raspmote/JWS/RaspberryPiServer/bin"/>
             <zipfileset dir="/home/belli/Polytech/S8/Raspmote/JWS/lib" includes="xstream-1.4.4.jar"/>

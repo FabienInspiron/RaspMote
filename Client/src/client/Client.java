@@ -60,7 +60,7 @@ public class Client {
 		String ip = null;
 		
 		try {
-			ip = Util.getIP();
+			ip = UtilIP.getIP();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,7 +112,7 @@ public class Client {
 			return;
 		}
 
-		Client client = new Client();
+		new Client();
 	}
 
 	/**
@@ -126,17 +126,17 @@ public class Client {
 		/**
 		 * Check time stampe
 		 */
-		String ret = Util.attribut(not, "timeStampe");
+		String ret = UtilIP.attribut(not, "timeStampe");
 		int val = Integer.parseInt(ret);
 		checkTimeStamp(val);
 
-		String mode = Util.attribut(not, "type");
+		String mode = UtilIP.attribut(not, "type");
 		if (mode.equals("CHANGE")) {
-			int id_out = Integer.parseInt(Util.attribut(not, "id"));
-			list_outlet.get(id_out).setName(Util.attribut(not, "name"));
-			list_outlet.get(id_out).setRoom(Util.attribut(not, "room"));
+			int id_out = Integer.parseInt(UtilIP.attribut(not, "id"));
+			list_outlet.get(id_out).setName(UtilIP.attribut(not, "name"));
+			list_outlet.get(id_out).setRoom(UtilIP.attribut(not, "room"));
 			list_outlet.get(id_out).setState(
-					Boolean.parseBoolean(Util.attribut(not, "state")));
+					Boolean.parseBoolean(UtilIP.attribut(not, "state")));
 
 			/**
 			 * Stop timer in the outlet
@@ -144,32 +144,32 @@ public class Client {
 			if (list_timer.contains(new Integer(id_out)))
 				list_timer.remove(new Integer(id_out));
 			
-			dispOut.createStatusBar(getTimeString() + " - " + "Outlet "+id_out+" change to "+Util.attribut(not, "state")+"...");
+			dispOut.createStatusBar(getTimeString() + " - " + "Outlet "+id_out+" change to "+UtilIP.attribut(not, "state")+"...");
 			
 		}
 
 		if (mode.equals("TIMER")) {
-			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			int id_out = Integer.parseInt(UtilIP.attribut(not, "id"));
 			list_timer.add(new Integer(id_out));
 
 			list_outlet.get(id_out).setState(
-					Boolean.parseBoolean(Util.attribut(not, "state")));
+					Boolean.parseBoolean(UtilIP.attribut(not, "state")));
 			
 			dispOut.createStatusBar(getTimeString() + " - " + "Timer add...");
 		}
 
 		if (mode.equals("PRESENCE")) {
-			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			int id_out = Integer.parseInt(UtilIP.attribut(not, "id"));
 			list_presence.add(new Integer(id_out));
 
 			list_outlet.get(id_out).setState(
-					Boolean.parseBoolean(Util.attribut(not, "state")));
+					Boolean.parseBoolean(UtilIP.attribut(not, "state")));
 			
 			dispOut.createStatusBar(getTimeString() + " - " + "Presence add on outlet "+id_out+"...");
 		}
 
 		if (mode.equals("STOP-PRESENCE")) {
-			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			int id_out = Integer.parseInt(UtilIP.attribut(not, "id"));
 
 			if (list_presence.contains(new Integer(id_out)))
 				list_presence.remove(new Integer(id_out));
@@ -178,7 +178,7 @@ public class Client {
 		}
 
 		if (mode.equals("STOP-TIMER")) {
-			int id_out = Integer.parseInt(Util.attribut(not, "id"));
+			int id_out = Integer.parseInt(UtilIP.attribut(not, "id"));
 
 			if (list_timer.contains(new Integer(id_out)))
 				list_timer.remove(new Integer(id_out));
@@ -193,10 +193,10 @@ public class Client {
 		}
 		
 		if (mode.equals("ADD")) {
-			int id_out = Integer.parseInt(Util.attribut(not, "id"));
-			String name = Util.attribut(not, "name");
-			String room = Util.attribut(not, "room");
-			boolean status = Boolean.parseBoolean(Util.attribut(not, "state"));
+			int id_out = Integer.parseInt(UtilIP.attribut(not, "id"));
+			String name = UtilIP.attribut(not, "name");
+			String room = UtilIP.attribut(not, "room");
+			boolean status = Boolean.parseBoolean(UtilIP.attribut(not, "state"));
 			
 			Outlet o = new Outlet();
 			o.setId(id_out);
@@ -210,8 +210,8 @@ public class Client {
 		}
 
 		if (mode.equals("DEL")) {
-			int id_out = Integer.parseInt(Util.attribut(not, "id"));
-			String name = Util.attribut(not, "name");
+			int id_out = Integer.parseInt(UtilIP.attribut(not, "id"));
+			String name = UtilIP.attribut(not, "name");
 			
 			list_outlet.remove(id_out);
 			

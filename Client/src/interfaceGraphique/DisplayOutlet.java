@@ -6,7 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
-import java.awt.Scrollbar;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -38,7 +39,8 @@ public class DisplayOutlet extends JFrame {
 	private JButton timer = new JButton("timer");
 	private JButton presence = new JButton("presence");
 	private Font UI_light = new Font("comic sans ms", Font.BOLD, 23);//getFont("UI.ttf");
-	JPanel statusPanel = new JPanel();
+	private JPanel statusPanel = new JPanel();
+	private JScrollPane scrollpane;
 	
 	private ImageIcon lampe_on;
 	private ImageIcon lampe_off;
@@ -77,11 +79,10 @@ public class DisplayOutlet extends JFrame {
 		contener = new  JPanel();
 		contener.setLayout(new BoxLayout(contener, BoxLayout.Y_AXIS));
 		
-		JScrollPane vertical = new JScrollPane(outletPan);
-		vertical.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		contener.add(vertical);
-
 		maj_outlets();
+		
+		scrollpane = new JScrollPane(contener);
+	    getContentPane().add(scrollpane, BorderLayout.CENTER);
 		
 		createStatusBar("Client created...");
 		
@@ -114,7 +115,10 @@ public class DisplayOutlet extends JFrame {
 
 			JPanel pannelOutlet = new JPanel(new BorderLayout());
 			JPanel buttons = new JPanel();
-
+			JPanel buttonsOPT = new JPanel();
+			buttons.setLayout(new GridBagLayout());
+	        GridBagConstraints gbc = new GridBagConstraints();
+			
 			id = new JLabel("" + outlet.getId());
 			id.setFont(UI_light.deriveFont(40f).deriveFont(Font.BOLD));
 
@@ -130,7 +134,8 @@ public class DisplayOutlet extends JFrame {
 
 			presence = new JButton("Presence");
 			presence.setActionCommand("" + outlet.getId());
-			presence.setFont(new Font("sansserif", Font.BOLD, 12));
+			presence.setFont(new Font("sansserif", Font.BOLD, 20));
+			presence.setBackground(Color.white);
 			
 			off = new JButton("off");
 			off.setFont(new Font("sansserif", Font.BOLD, 20));
@@ -141,7 +146,8 @@ public class DisplayOutlet extends JFrame {
 
 			timer = new JButton("Timer");
 			timer.setActionCommand("" + outlet.getId());
-			timer.setFont(new Font("sansserif", Font.BOLD, 12));
+			timer.setFont(new Font("sansserif", Font.BOLD, 20));
+			timer.setBackground(Color.white);
 			
 			if (outlet.isState())
 				on.setBackground(Color.gray);
@@ -174,12 +180,13 @@ public class DisplayOutlet extends JFrame {
 			}
 			
 			if(affichage) {
-				buttons.add(presence);
-				buttons.add(timer);
+				buttonsOPT.add(presence);
+				buttonsOPT.add(timer);
 			}
 			
 			pannelOutlet.add(droit, BorderLayout.EAST);
 			pannelOutlet.add(buttons, BorderLayout.CENTER);
+			pannelOutlet.add(buttonsOPT, BorderLayout.SOUTH);
 			
 			on.addActionListener(new ActionListener() {
 
@@ -268,6 +275,7 @@ public class DisplayOutlet extends JFrame {
 				pannelOutlet.setBackground(new Color(208,208,208));
 				gauche.setBackground(new Color(208,208,208));
 				buttons.setBackground(new Color(208,208,208));
+				buttonsOPT.setBackground(new Color(208,208,208));
 				droit.setBackground(new Color(208,208,208));
 			}
 			

@@ -1,7 +1,9 @@
 cd Client
 cd src
-wsimport -keep http://127.0.0.1:9998/ws/thirdpartpublisher?wsdl
+wsimport -keep http://$1:$2/ws/thirdpartpublisher?wsdl
 cd ..
 ant clean
 ant 
+ant create_run_jar
 ant Client
+

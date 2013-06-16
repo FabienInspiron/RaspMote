@@ -26,9 +26,6 @@ public class RaspberryPublisher {
 	 */
 	public static void main(String[] args) {
 
-		System.out.println("taille : " + args.length);
-		
-		
 		String addressIP = "127.0.0.1";
 		
 		try {

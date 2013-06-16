@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project Client with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="/home/belli/Polytech/S8/Raspmote/JWS/Client/jar/Client.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="client.Client"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ jdom-2.0.5.jar xstream-1.4.4.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="/home/belli/Polytech/S8/Raspmote/JWS/Client/bin"/>
+            <zipfileset dir="/home/belli/Polytech/S8/Raspmote/JWS/lib" includes="jdom-2.0.5.jar"/>
+            <fileset dir="/home/belli/Polytech/S8/Raspmote/JWS/ThirdPartServer/bin"/>
+            <fileset dir="/home/belli/Polytech/S8/Raspmote/JWS/RaspberryPiServer/bin"/>
+            <zipfileset dir="/home/belli/Polytech/S8/Raspmote/JWS/lib" includes="xstream-1.4.4.jar"/>
+        </jar>
+    </target>
+</project>
